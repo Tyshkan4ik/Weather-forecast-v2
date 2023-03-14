@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     /// Константы используемые в данном классе
     private enum Constants {
@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     private let factoryView = FactoryView()
     
+    private lazy var tableView = factoryView.table
     
     //MARK: - Methods
     
@@ -26,17 +27,48 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
         setupSubviews()
         setupConstraints()
+        setupTable()
     }
     
     private func setupSubviews() {
-        
+        view.addSubview(tableView)
     }
     
+    private func setupTable() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-          
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
+   //MARK: - UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = "Hello"
+        cell.contentConfiguration = configuration
+        return cell
+    }
+    
+    //MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
