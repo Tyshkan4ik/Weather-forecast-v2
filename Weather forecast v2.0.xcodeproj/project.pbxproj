@@ -13,6 +13,7 @@
 		81F9D80629C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81F9D80429C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld */; };
 		81F9D80829C07F1300475D19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F9D80729C07F1300475D19 /* Assets.xcassets */; };
 		81F9D80B29C07F1300475D19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F9D80929C07F1300475D19 /* LaunchScreen.storyboard */; };
+		81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9D81A29C0A85300475D19 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		81F9D80729C07F1300475D19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81F9D80A29C07F1300475D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81F9D80C29C07F1300475D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81F9D81A29C0A85300475D19 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				81F9D81329C083F500475D19 /* View */,
 				81F9D81429C0840F00475D19 /* Controller */,
 				81F9D81629C0847900475D19 /* Core Data */,
+				81F9D81929C0A82400475D19 /* Extension */,
 				81F9D80729C07F1300475D19 /* Assets.xcassets */,
 				81F9D80929C07F1300475D19 /* LaunchScreen.storyboard */,
 				81F9D80C29C07F1300475D19 /* Info.plist */,
@@ -105,6 +108,14 @@
 				81F9D80429C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		81F9D81929C0A82400475D19 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				81F9D81A29C0A85300475D19 /* UIColor.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 				81F9D7FC29C07F1100475D19 /* AppDelegate.swift in Sources */,
 				81F9D80629C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
+				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
