@@ -9,13 +9,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    /// Константы используемые в данном классе
     private enum Constants {
-        static let mainViewColor = "D6F0FA"
+        static let backgroundColor = "D6F0FA"
     }
-
+    
+//MARK: - Properties
+    
+    private let factoryView = FactoryView()
+    
+    
+    //MARK: - Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hex: Constants.mainViewColor)
+        view.backgroundColor = .yellow
+        setupSubviews()
+        setupConstraints()
+    }
+    
+    private func setupSubviews() {
+        
+    }
+    
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+          
+        ])
     }
     
 }
