@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
+		81CB262429C36F0A004966A9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB262329C36F0A004966A9 /* GradientView.swift */; };
 		81F9D7FC29C07F1100475D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9D7FB29C07F1100475D19 /* AppDelegate.swift */; };
 		81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9D7FD29C07F1100475D19 /* SceneDelegate.swift */; };
 		81F9D80029C07F1100475D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F9D7FF29C07F1100475D19 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
+		81CB262329C36F0A004966A9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81F9D7F829C07F1100475D19 /* Weather forecast v2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather forecast v2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F9D7FB29C07F1100475D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81F9D7FD29C07F1100475D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		81CB262229C36ED7004966A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				81CB262329C36F0A004966A9 /* GradientView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		81F9D7EF29C07F1100475D19 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 				81F9D81629C0847900475D19 /* Core Data */,
 				81F9D81929C0A82400475D19 /* Extension */,
 				81F9D81C29C0AFA700475D19 /* FactoryView */,
+				81CB262229C36ED7004966A9 /* Helpers */,
 				81F9D80729C07F1300475D19 /* Assets.xcassets */,
 				81F9D80929C07F1300475D19 /* LaunchScreen.storyboard */,
 				81F9D80C29C07F1300475D19 /* Info.plist */,
@@ -224,6 +235,7 @@
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,
 				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,
+				81CB262429C36F0A004966A9 /* GradientView.swift in Sources */,
 				81F9D82029C0B08E00475D19 /* FactoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
