@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func setupTable() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(ForecastTodayCell.self, forCellReuseIdentifier: ForecastTodayCell.identifier)
     }
     
     private func setupConstraints() {
@@ -59,11 +60,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = "Hello"
-        cell.contentConfiguration = configuration
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTodayCell.identifier, for: indexPath) as? ForecastTodayCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else {
+            var cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            var configuration = cell.defaultContentConfiguration()
+            configuration.text = "Hello"
+            cell.contentConfiguration = configuration
+            return cell
+        }
     }
     
     //MARK: - UITableViewDelegate
