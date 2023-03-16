@@ -17,13 +17,14 @@ class GradientView: UIView {
     
     let gradient = CAGradientLayer()
     
-    init(colors: [CGColor]) {
+    init(colors: [UIColor?]) {
         super.init(frame: .zero)
         gradient.cornerRadius = Constatns.cornerRadius
         gradient.startPoint = Constatns.startPoint
         gradient.endPoint = Constatns.endPoint
         gradient.frame = bounds
-        gradient.colors = colors
+        gradient.colors = colors.map { $0?.cgColor ?? UIColor.clear.cgColor
+        }
         layer.addSublayer(gradient)
     }
     

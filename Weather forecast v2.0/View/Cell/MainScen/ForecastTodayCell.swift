@@ -18,6 +18,8 @@ final class ForecastTodayCell: UITableViewCell {
         static let alphaDayAndDate: CGFloat = 0.6
         static let alphaImageWind: CGFloat = 0.2
         static let backgroundColor = "D6F0FA"
+        static let gradientColorOne = "69E1D5"
+        static let gradientColorTwo = "00ADFF"
         static let viewBackgroundTopConstant: CGFloat = 15
         static let viewBackgroundLeadingConstant: CGFloat = 20
         static let viewBackgroundTrailingConstant: CGFloat = -20
@@ -35,9 +37,8 @@ final class ForecastTodayCell: UITableViewCell {
         static let imageWindWidthConstant: CGFloat = 1/6
     }
 
-    let viewBackground: UIView = {
-       let view = UIView()
-        view.backgroundColor = .systemGray2
+    let viewBackground: GradientView = {
+        let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)])
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
