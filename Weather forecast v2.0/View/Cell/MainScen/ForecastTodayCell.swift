@@ -42,7 +42,7 @@ final class ForecastTodayCell: UITableViewCell {
     }
     
     private let screenWidth: CGFloat = UIScreen.main.bounds.width
-
+    
     private let viewBackground: GradientView = {
         let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)])
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class ForecastTodayCell: UITableViewCell {
     }()
     
     private let imageWeather: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         let image = UIImage(named: "fewCloudsDay")
         imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +116,7 @@ final class ForecastTodayCell: UITableViewCell {
         contentView.backgroundColor = UIColor(hex: Constants.backgroundColor)
         setupSubviews()
         setupConstraints()
+        setupHuggingPriority()
     }
     
     required init?(coder: NSCoder) {
@@ -138,7 +139,7 @@ final class ForecastTodayCell: UITableViewCell {
             viewBackground.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.viewBackgroundLeadingConstant),
             viewBackground.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.viewBackgroundTrailingConstant),
             viewBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
+            
             imageWeather.topAnchor.constraint(equalTo: viewBackground.topAnchor, constant: Constants.imageWeatherTopConstant),
             imageWeather.leadingAnchor.constraint(equalTo: viewBackground.leadingAnchor, constant: Constants.imageWeatherLeadingConstant),
             imageWeather.widthAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: Constants.imageWeatherWidthConstant),
@@ -164,5 +165,9 @@ final class ForecastTodayCell: UITableViewCell {
             imageWind.widthAnchor.constraint(equalTo: viewBackground.widthAnchor, multiplier: Constants.imageWindWidthConstant),
             imageWind.heightAnchor.constraint(equalTo: imageWind.widthAnchor)
         ])
+    }
+    
+    private func setupHuggingPriority() {
+        dayOfTheWeek.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 }
