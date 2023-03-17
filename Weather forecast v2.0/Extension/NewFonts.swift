@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
+// добавление нового шрифта, используется в ячейке ForecastTodayCell
 extension UIFont {
     static func AAvanteBsExtraBold(size: CGFloat) -> UIFont? {
         return UIFont(name: "AAvanteBsExtraBold", size: size)
+    }
+    static func AAvanteBsExtraBold() -> UIFont? {
+        return UIFont(name: "AAvanteBsExtraBold", size: 17)
     }
 }

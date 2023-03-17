@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         static let backgroundColor = "D6F0FA"
     }
     
-//MARK: - Properties
+    //MARK: - Properties
     
     private let factoryView = FactoryView()
     
@@ -38,6 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ForecastTodayCell.self, forCellReuseIdentifier: ForecastTodayCell.identifier)
+        tableView.register(DetailedForecastTodayCell.self, forCellReuseIdentifier: DetailedForecastTodayCell.identifier)
     }
     
     private func setupConstraints() {
@@ -49,7 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         ])
     }
     
-   //MARK: - UITableViewDataSource
+    //MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
         3
@@ -61,10 +62,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTodayCell.identifier, for: indexPath) as? ForecastTodayCell else {
+            guard let cellFirst = tableView.dequeueReusableCell(withIdentifier: ForecastTodayCell.identifier, for: indexPath) as? ForecastTodayCell else {
                 return UITableViewCell()
             }
-            return cell
+            return cellFirst
+        } else if indexPath.section == 1 {
+            guard let cellSecond = tableView.dequeueReusableCell(withIdentifier: DetailedForecastTodayCell.identifier, for: indexPath) as? DetailedForecastTodayCell else {
+                return UITableViewCell()
+            }
+            return cellSecond
         } else {
             var cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             var configuration = cell.defaultContentConfiguration()

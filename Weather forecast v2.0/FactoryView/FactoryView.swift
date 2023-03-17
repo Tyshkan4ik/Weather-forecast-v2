@@ -18,7 +18,7 @@ class FactoryView {
     let table: UITableView = {
         var table = UITableView()
         table.backgroundColor = UIColor(hex: Constants.backgroundColor)
-//        table.separatorStyle = .none
+        table.separatorStyle = .none
 //        table.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table

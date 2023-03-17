@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+/// Градиент цвета. Используется в ячейке ForecastTodayCell
 class GradientView: UIView {
 
     private enum Constatns {

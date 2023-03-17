@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// добавление инициализации с помощью hex
 extension UIColor {
     convenience init?(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

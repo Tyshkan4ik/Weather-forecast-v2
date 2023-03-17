@@ -9,10 +9,6 @@ import UIKit
 
 final class ForecastTodayCell: UITableViewCell {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     private enum Constants {
         static let alphaCityAndDegrees: CGFloat = 0.8
         static let alphaDayAndDate: CGFloat = 0.6
@@ -39,9 +35,14 @@ final class ForecastTodayCell: UITableViewCell {
         static let titleCityFontSize: CGFloat = 20
         static let dayAndDateFontSize: CGFloat = 32
         static let degreesFontSize: CGFloat = 5.8
+        static let screenWidth: CGFloat = UIScreen.main.bounds.width
     }
     
-    private let screenWidth: CGFloat = UIScreen.main.bounds.width
+    //MARK: - Properties
+    
+    static var identifier: String {
+        return String(describing: self)
+    }
     
     private let viewBackground: GradientView = {
         let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)])
@@ -61,7 +62,7 @@ final class ForecastTodayCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .white
         label.text = "Санкт-Петербург"
-        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.titleCityFontSize)
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.titleCityFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +75,7 @@ final class ForecastTodayCell: UITableViewCell {
         label.textColor = .white
         label.text = "Понедельник"
         label.adjustsFontSizeToFitWidth = true
-        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.dayAndDateFontSize)
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayAndDateFontSize)
         label.alpha = Constants.alphaDayAndDate
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -86,7 +87,7 @@ final class ForecastTodayCell: UITableViewCell {
         label.textColor = .white
         label.alpha = Constants.alphaDayAndDate
         label.adjustsFontSizeToFitWidth = true
-        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.dayAndDateFontSize)
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayAndDateFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -97,7 +98,7 @@ final class ForecastTodayCell: UITableViewCell {
         label.text = "-3"
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
-        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.degreesFontSize)
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -111,6 +112,8 @@ final class ForecastTodayCell: UITableViewCell {
         return imageView
     }()
     
+    //MARK: - init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(hex: Constants.backgroundColor)
@@ -122,6 +125,8 @@ final class ForecastTodayCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Methods
     
     private func setupSubviews() {
         contentView.addSubview(viewBackground)
