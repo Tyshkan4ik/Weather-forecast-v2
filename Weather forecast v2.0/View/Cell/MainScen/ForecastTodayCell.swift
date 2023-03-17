@@ -35,15 +35,21 @@ final class ForecastTodayCell: UITableViewCell {
         static let imageWindTrailingConstant: CGFloat = 9
         static let imageWindBottomConstant: CGFloat = 35
         static let imageWindWidthConstant: CGFloat = 1/6
+        static let imageWind = "сильный ветер"
+        static let titleCityFontSize: CGFloat = 20
+        static let dayAndDateFontSize: CGFloat = 32
+        static let degreesFontSize: CGFloat = 5.8
     }
+    
+    private let screenWidth: CGFloat = UIScreen.main.bounds.width
 
-    let viewBackground: GradientView = {
+    private let viewBackground: GradientView = {
         let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)])
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let imageWeather: UIImageView = {
+    private let imageWeather: UIImageView = {
        let imageView = UIImageView()
         let image = UIImage(named: "fewCloudsDay")
         imageView.image = image
@@ -51,11 +57,11 @@ final class ForecastTodayCell: UITableViewCell {
         return imageView
     }()
     
-    lazy var titlCity: UILabel = {
+    private lazy var titlCity: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "Санкт-Петербург"
-        //label.font = .IntuitionsskBold(size: UIScreen.main.bounds.width / 20)
+        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.titleCityFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,42 +69,42 @@ final class ForecastTodayCell: UITableViewCell {
     }()
     
     
-    lazy var dayOfTheWeek: UILabel = {
+    private lazy var dayOfTheWeek: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "Понедельник"
         label.adjustsFontSizeToFitWidth = true
-//        label.font = .IntuitionsskBold(size: UIScreen.main.bounds.width / 32)
+        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.dayAndDateFontSize)
         label.alpha = Constants.alphaDayAndDate
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.text = "16/03"
         label.textColor = .white
         label.alpha = Constants.alphaDayAndDate
         label.adjustsFontSizeToFitWidth = true
-//        label.font = .IntuitionsskBold(size: UIScreen.main.bounds.width / 32)
+        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.dayAndDateFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let degreesLabel: UILabel = {
+    private lazy var degreesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "9"
+        label.text = "-3"
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
-//        label.font = .AAvanteBsExtraBold(size: UIScreen.main.bounds.width / 5.8)
+        label.font = .AAvanteBsExtraBold(size: screenWidth / Constants.degreesFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    let imageWind: UIImageView = {
+    private let imageWind: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "сильный ветер")
+        let image = UIImage(named: Constants.imageWind)
         imageView.image = image
         imageView.alpha = Constants.alphaImageWind
         imageView.translatesAutoresizingMaskIntoConstraints = false
