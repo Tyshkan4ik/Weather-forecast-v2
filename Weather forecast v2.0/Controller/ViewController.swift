@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     /// Константы используемые в данном классе
     private enum Constants {
         static let backgroundColor = "D6F0FA"
+        static let screenHeight: CGFloat = UIScreen.main.bounds.height
+        static let heightDivider: CGFloat = 3.3
     }
     
     //MARK: - Properties
@@ -39,6 +41,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
         tableView.register(ForecastTodayCell.self, forCellReuseIdentifier: ForecastTodayCell.identifier)
         tableView.register(DetailedForecastTodayCell.self, forCellReuseIdentifier: DetailedForecastTodayCell.identifier)
+        tableView.register(Forecast5DaysCell.self, forCellReuseIdentifier: Forecast5DaysCell.identifier)
     }
     
     private func setupConstraints() {
@@ -72,11 +75,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             return cellSecond
         } else {
-            var cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-            var configuration = cell.defaultContentConfiguration()
-            configuration.text = "Hello"
-            cell.contentConfiguration = configuration
-            return cell
+            guard let cellSecond = tableView.dequeueReusableCell(withIdentifier: Forecast5DaysCell.identifier, for: indexPath) as? Forecast5DaysCell else {
+                return UITableViewCell()
+            }
+            return cellSecond
         }
     }
     
@@ -84,5 +86,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+    
+    //высота ячейки (чтобы не схлопывалась коллекция)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 2 {
+            return Constants.screenHeight / Constants.heightDivider
+        }
+        return UITableView.automaticDimension
     }
 }

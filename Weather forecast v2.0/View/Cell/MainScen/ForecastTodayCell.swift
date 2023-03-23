@@ -58,7 +58,7 @@ final class ForecastTodayCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var titlCity: UILabel = {
+    private let titlCity: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "Санкт-Петербург"
@@ -70,7 +70,7 @@ final class ForecastTodayCell: UITableViewCell {
     }()
     
     
-    private lazy var dayOfTheWeek: UILabel = {
+    private let dayOfTheWeek: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "Понедельник"
@@ -81,7 +81,7 @@ final class ForecastTodayCell: UITableViewCell {
         return label
     }()
     
-    private lazy var dateLabel: UILabel = {
+    private let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "16/03"
         label.textColor = .white
@@ -92,7 +92,7 @@ final class ForecastTodayCell: UITableViewCell {
         return label
     }()
     
-    private lazy var degreesLabel: UILabel = {
+    private let degreesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "-3"

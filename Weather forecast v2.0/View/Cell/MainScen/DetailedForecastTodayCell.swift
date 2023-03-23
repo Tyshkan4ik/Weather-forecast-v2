@@ -130,5 +130,4 @@ class DetailedForecastTodayCell: UITableViewCell {
     private func presentDetailedForecastViewController() {
         print("Hello")
     }
-    
 }

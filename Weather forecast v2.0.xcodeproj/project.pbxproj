@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */; };
+		8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893C29CA140B00F41B20 /* DayCellForCollection.swift */; };
+		8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */; };
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
 		81CB262429C36F0A004966A9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB262329C36F0A004966A9 /* GradientView.swift */; };
 		81CB262729C38196004966A9 /* a_AvanteBs_ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysCell.swift; sourceTree = "<group>"; };
+		8135893C29CA140B00F41B20 /* DayCellForCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellForCollection.swift; sourceTree = "<group>"; };
+		8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewForCollectionCell.swift; sourceTree = "<group>"; };
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
 		81CB262329C36F0A004966A9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a_AvanteBs_ExtraBold.ttf; sourceTree = "<group>"; };
@@ -53,11 +59,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8135893B29CA12FC00F41B20 /* Cell for Collection */ = {
+			isa = PBXGroup;
+			children = (
+				8135893C29CA140B00F41B20 /* DayCellForCollection.swift */,
+			);
+			path = "Cell for Collection";
+			sourceTree = "<group>";
+		};
 		81CB25FB29C1E220004966A9 /* MainScen */ = {
 			isa = PBXGroup;
 			children = (
 				81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */,
 				81CB262A29C47E62004966A9 /* DetailedForecastTodayCell.swift */,
+				8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */,
+				8135893B29CA12FC00F41B20 /* Cell for Collection */,
 			);
 			path = MainScen;
 			sourceTree = "<group>";
@@ -74,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				81CB262329C36F0A004966A9 /* GradientView.swift */,
+				8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */,
 				81CB262C29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift */,
 			);
 			path = Helpers;
@@ -254,9 +271,12 @@
 				81F9D7FC29C07F1100475D19 /* AppDelegate.swift in Sources */,
 				81CB262B29C47E62004966A9 /* DetailedForecastTodayCell.swift in Sources */,
 				81F9D80629C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld in Sources */,
+				8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */,
 				81CB262929C3845F004966A9 /* NewFonts.swift in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,
+				8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */,
+				8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */,
 				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,
 				81CB262429C36F0A004966A9 /* GradientView.swift in Sources */,
 				81F9D82029C0B08E00475D19 /* FactoryView.swift in Sources */,
