@@ -12,6 +12,7 @@
 		8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */; };
 		8135896129CDA59B00F41B20 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896029CDA59B00F41B20 /* DetailedViewController.swift */; };
 		8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896329CDA91400F41B20 /* DetailedCell.swift */; };
+		8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */; };
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
 		81CB262429C36F0A004966A9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB262329C36F0A004966A9 /* GradientView.swift */; };
 		81CB262729C38196004966A9 /* a_AvanteBs_ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */; };
@@ -34,6 +35,7 @@
 		8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewForCollectionCell.swift; sourceTree = "<group>"; };
 		8135896029CDA59B00F41B20 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		8135896329CDA91400F41B20 /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
+		8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForNavigationBar.swift; sourceTree = "<group>"; };
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
 		81CB262329C36F0A004966A9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a_AvanteBs_ExtraBold.ttf; sourceTree = "<group>"; };
@@ -104,7 +106,6 @@
 			children = (
 				81CB262329C36F0A004966A9 /* GradientView.swift */,
 				8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */,
-				81CB262C29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -141,7 +142,6 @@
 				81F9D81329C083F500475D19 /* View */,
 				81F9D81429C0840F00475D19 /* Controller */,
 				81F9D81929C0A82400475D19 /* Extension */,
-				81F9D81C29C0AFA700475D19 /* FactoryView */,
 				81CB262229C36ED7004966A9 /* Helpers */,
 				81F9D81629C0847900475D19 /* Core Data */,
 				81CB262529C38157004966A9 /* Font */,
@@ -162,6 +162,9 @@
 		81F9D81329C083F500475D19 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				81F9D81F29C0B08E00475D19 /* FactoryView.swift */,
+				8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */,
+				81CB262C29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift */,
 				81CB25FF29C1E242004966A9 /* Cell */,
 			);
 			path = View;
@@ -200,14 +203,6 @@
 				81CB262829C3845F004966A9 /* NewFonts.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		81F9D81C29C0AFA700475D19 /* FactoryView */ = {
-			isa = PBXGroup;
-			children = (
-				81F9D81F29C0B08E00475D19 /* FactoryView.swift */,
-			);
-			path = FactoryView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +284,7 @@
 				8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */,
 				81CB262929C3845F004966A9 /* NewFonts.swift in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
+				8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,
 				8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */,
 				8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */,
@@ -441,6 +437,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,6 +464,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

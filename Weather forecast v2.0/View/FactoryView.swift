@@ -23,4 +23,5 @@ class FactoryView {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
 }

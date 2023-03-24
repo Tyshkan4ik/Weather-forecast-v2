@@ -21,12 +21,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private let factoryView = FactoryView()
     
     private lazy var tableView = factoryView.table
+    private let viewForNavigationBar = ViewForNavigationBar()
     
     //MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: Constants.backgroundColor)
+        setupSettingsNavigationBar()
         setupSubviews()
         setupConstraints()
         setupTable()
@@ -34,6 +36,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func setupSubviews() {
         view.addSubview(tableView)
+        navigationController?.navigationBar.addSubview(viewForNavigationBar)
     }
     
     private func setupTable() {
@@ -44,12 +47,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.register(Forecast5DaysCell.self, forCellReuseIdentifier: Forecast5DaysCell.identifier)
     }
     
+    
+    
+    /// Добавление viewForNavigationBar с кнопками на navigationBar
+    private func setupSettingsNavigationBar() {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.addSubview(viewForNavigationBar)
+        viewForNavigationBar.clipsToBounds = true
+        viewForNavigationBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            viewForNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor),
+            viewForNavigationBar.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
+            viewForNavigationBar.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
+            viewForNavigationBar.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)
+            ])
+    }
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
@@ -106,4 +127,3 @@ extension ViewController: DetailedForecastTodayCellDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
 }
-

@@ -14,7 +14,9 @@ class ItemViewforStackFromDetailedCell: UIView {
         static let numberOfLines = 0
         static let titleTopConstant: CGFloat = 5
     }
-
+    
+    //MARK: - Properties
+    
     private let image: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(systemName: "person")
@@ -43,6 +45,8 @@ class ItemViewforStackFromDetailedCell: UIView {
         return label
     }()
     
+    //MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupElement()
@@ -53,6 +57,8 @@ class ItemViewforStackFromDetailedCell: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
+    
+    //MARK: - Methods
     
     private func setupElement() {
         addSubview(image)
