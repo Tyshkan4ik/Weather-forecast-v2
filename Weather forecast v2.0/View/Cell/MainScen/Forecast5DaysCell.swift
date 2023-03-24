@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Ячейка содержащая коллекцию с прогнозом на 5 дней
 class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     enum Constants {

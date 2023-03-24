@@ -73,12 +73,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             guard let cellSecond = tableView.dequeueReusableCell(withIdentifier: DetailedForecastTodayCell.identifier, for: indexPath) as? DetailedForecastTodayCell else {
                 return UITableViewCell()
             }
+            cellSecond.delegate = self
             return cellSecond
         } else {
-            guard let cellSecond = tableView.dequeueReusableCell(withIdentifier: Forecast5DaysCell.identifier, for: indexPath) as? Forecast5DaysCell else {
+            guard let cellThird = tableView.dequeueReusableCell(withIdentifier: Forecast5DaysCell.identifier, for: indexPath) as? Forecast5DaysCell else {
                 return UITableViewCell()
             }
-            return cellSecond
+            return cellThird
         }
     }
     
@@ -96,3 +97,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return UITableView.automaticDimension
     }
 }
+
+//MARK: - DetailedForecastTodayCellDelegate
+
+extension ViewController: DetailedForecastTodayCellDelegate {
+    func showDetailedViewController() {
+        let controller = DetailedViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+

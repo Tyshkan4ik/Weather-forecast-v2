@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+protocol DetailedForecastTodayCellDelegate: AnyObject {
+    func showDetailedViewController()
+    //func update(_ cell: DetailedCell)
+}
+
+/// Ячейка с подробным прогнозом на главной сцене
 class DetailedForecastTodayCell: UITableViewCell {
     
     private enum Constants {
@@ -32,6 +38,8 @@ class DetailedForecastTodayCell: UITableViewCell {
     static var identifier: String {
         return String(describing: self)
     }
+    
+    weak var delegate: DetailedForecastTodayCellDelegate?
     
     private let viewBackground: UIView = {
         let view = UIView()
@@ -82,7 +90,7 @@ class DetailedForecastTodayCell: UITableViewCell {
         contentView.backgroundColor = UIColor(hex: Constants.backgroundColor)
         setupElements()
         setupConstaints()
-        detailedButton.addTarget(self, action: #selector(presentDetailedForecastViewController), for: .touchUpInside)
+        detailedButton.addTarget(self, action: #selector(presentDetailedViewController), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -125,9 +133,9 @@ class DetailedForecastTodayCell: UITableViewCell {
         ])
     }
     
-    /// Открывает DetailedForecastViewController
+    /// Открывает DetailedViewController
     @objc
-    private func presentDetailedForecastViewController() {
-        print("Hello")
+    private func presentDetailedViewController() {
+        delegate?.showDetailedViewController()
     }
 }

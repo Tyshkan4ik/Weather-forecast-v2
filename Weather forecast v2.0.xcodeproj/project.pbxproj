@@ -10,6 +10,8 @@
 		8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */; };
 		8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893C29CA140B00F41B20 /* DayCellForCollection.swift */; };
 		8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */; };
+		8135896129CDA59B00F41B20 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896029CDA59B00F41B20 /* DetailedViewController.swift */; };
+		8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896329CDA91400F41B20 /* DetailedCell.swift */; };
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
 		81CB262429C36F0A004966A9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB262329C36F0A004966A9 /* GradientView.swift */; };
 		81CB262729C38196004966A9 /* a_AvanteBs_ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */; };
@@ -30,6 +32,8 @@
 		8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysCell.swift; sourceTree = "<group>"; };
 		8135893C29CA140B00F41B20 /* DayCellForCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellForCollection.swift; sourceTree = "<group>"; };
 		8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewForCollectionCell.swift; sourceTree = "<group>"; };
+		8135896029CDA59B00F41B20 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		8135896329CDA91400F41B20 /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
 		81CB262329C36F0A004966A9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a_AvanteBs_ExtraBold.ttf; sourceTree = "<group>"; };
@@ -67,6 +71,14 @@
 			path = "Cell for Collection";
 			sourceTree = "<group>";
 		};
+		8135896229CDA88D00F41B20 /* DetailedScen */ = {
+			isa = PBXGroup;
+			children = (
+				8135896329CDA91400F41B20 /* DetailedCell.swift */,
+			);
+			path = DetailedScen;
+			sourceTree = "<group>";
+		};
 		81CB25FB29C1E220004966A9 /* MainScen */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				81CB25FB29C1E220004966A9 /* MainScen */,
+				8135896229CDA88D00F41B20 /* DetailedScen */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -158,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				81F9D7FF29C07F1100475D19 /* ViewController.swift */,
+				8135896029CDA59B00F41B20 /* DetailedViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -269,12 +283,14 @@
 			files = (
 				81F9D80029C07F1100475D19 /* ViewController.swift in Sources */,
 				81F9D7FC29C07F1100475D19 /* AppDelegate.swift in Sources */,
+				8135896129CDA59B00F41B20 /* DetailedViewController.swift in Sources */,
 				81CB262B29C47E62004966A9 /* DetailedForecastTodayCell.swift in Sources */,
 				81F9D80629C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld in Sources */,
 				8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */,
 				81CB262929C3845F004966A9 /* NewFonts.swift in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,
+				8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */,
 				8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */,
 				8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */,
 				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,

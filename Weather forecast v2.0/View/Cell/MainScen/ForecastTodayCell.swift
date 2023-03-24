@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Ячейка с текущем прогнозом на главной сцене
 final class ForecastTodayCell: UITableViewCell {
     
     private enum Constants {

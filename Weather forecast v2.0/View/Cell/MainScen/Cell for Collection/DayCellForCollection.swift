@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Ячейка коллекции расположенной в Forecast5DaysCell
 class DayCellForCollection: UICollectionViewCell {
     
     private enum Constants {
@@ -57,45 +58,45 @@ class DayCellForCollection: UICollectionViewCell {
     }()
     
     private let dayWeek: UILabel = {
-        let lable = UILabel()
-        lable.textColor = .black
-        lable.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayWeekFontSize)
-        lable.adjustsFontSizeToFitWidth = true
-        lable.text = "ПН"
-        lable.alpha = Constants.dayWeekAlfa
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        return lable
+        let label = UILabel()
+        label.textColor = .black
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayWeekFontSize)
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "ПН"
+        label.alpha = Constants.dayWeekAlfa
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let date: UILabel = {
-        let lable = UILabel()
-        lable.textColor = .black
-        lable.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dateFontSize)
-        lable.adjustsFontSizeToFitWidth = true
-        lable.text = "02/11"
-        lable.alpha = Constants.dateAlfa
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        return lable
+        let label = UILabel()
+        label.textColor = .black
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dateFontSize)
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "02/11"
+        label.alpha = Constants.dateAlfa
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let degrees: UILabel = {
-        let lable = UILabel()
-        lable.text = "7"
-        lable.textColor = .black
-        lable.adjustsFontSizeToFitWidth = true
-        lable.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        return lable
+        let label = UILabel()
+        label.text = "7"
+        label.textColor = .black
+        label.adjustsFontSizeToFitWidth = true
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let inf: UILabel = {
-        let lable = UILabel()
-        lable.textColor = .black
-        lable.text = "info"
-        lable.adjustsFontSizeToFitWidth = true
-        lable.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.infFontSize)
-        lable.translatesAutoresizingMaskIntoConstraints = false
-        return lable
+        let label = UILabel()
+        label.textColor = .black
+        label.text = "info"
+        label.adjustsFontSizeToFitWidth = true
+        label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.infFontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     //MARK: - Init
