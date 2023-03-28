@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Делегат ячейки DetailedForecastTodayCell с переходом на DetailedViewController
 protocol DetailedForecastTodayCellDelegate: AnyObject {
     func showDetailedViewController()
     //func update(_ cell: DetailedCell)

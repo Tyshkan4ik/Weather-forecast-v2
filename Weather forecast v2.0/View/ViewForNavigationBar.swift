@@ -12,8 +12,6 @@ import UIKit
 class ViewForNavigationBar: UIView {
     
     private enum Constants {
-        static let favoritesButtonLeadingConstant: CGFloat = 15
-        static let addToFavoritesButtonTrailingConstant: CGFloat = -15
         static let favoritesButtonName = "menu"
         static let addToFavoritesButtonName = "star"
         static let addToFavoritesWidthDivider: CGFloat = 17
@@ -39,6 +37,18 @@ class ViewForNavigationBar: UIView {
         return button
     }()
     
+    lazy var searchBar: UISearchController = {
+        let searchList = SearchListOfCitiesController()
+        let search = UISearchController(searchResultsController: searchList)
+        //searchList.delegate = self
+        search.searchResultsUpdater = searchList
+        search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return search
+    }()
+    
+    
+    
     //MARK: - Init
     
     override init(frame: CGRect) {
@@ -57,17 +67,23 @@ class ViewForNavigationBar: UIView {
     private func setupElement() {
         addSubview(favoritesButton)
         addSubview(addToFavoritesButton)
+        addSubview(searchBar.searchBar)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             favoritesButton.topAnchor.constraint(equalTo: topAnchor),
             favoritesButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-            favoritesButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.favoritesButtonLeadingConstant),
+            favoritesButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             favoritesButton.widthAnchor.constraint(equalTo: favoritesButton.heightAnchor),
             
             addToFavoritesButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            addToFavoritesButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.addToFavoritesButtonTrailingConstant),
+            addToFavoritesButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            searchBar.searchBar.leadingAnchor.constraint(equalTo: favoritesButton.trailingAnchor, constant: 10),
+            searchBar.searchBar.trailingAnchor.constraint(equalTo: addToFavoritesButton.leadingAnchor, constant: -10),
+            searchBar.searchBar.topAnchor.constraint(equalTo: topAnchor),
+            searchBar.searchBar.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

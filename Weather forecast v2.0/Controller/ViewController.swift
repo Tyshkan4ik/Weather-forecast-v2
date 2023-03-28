@@ -14,29 +14,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         static let backgroundColor = "D6F0FA"
         static let screenHeight: CGFloat = UIScreen.main.bounds.height
         static let heightDivider: CGFloat = 3.3
+        static let titleViewWidthConstant: CGFloat = 34
     }
     
     //MARK: - Properties
     
     private let factoryView = FactoryView()
-    
     private lazy var tableView = factoryView.table
-    private let viewForNavigationBar = ViewForNavigationBar()
+    
+     let viewForNavigationBar = ViewForNavigationBar()
+
     
     //MARK: - Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: Constants.backgroundColor)
-        setupSettingsNavigationBar()
-        setupSubviews()
+        setupElements()
         setupConstraints()
         setupTable()
+        setupSettingsNavigationBar()
+        definesPresentationContext = true // позволяет показать navigationBar поверх SearchList
     }
     
-    private func setupSubviews() {
+    private func setupElements() {
         view.addSubview(tableView)
-        navigationController?.navigationBar.addSubview(viewForNavigationBar)
+    }
+    
+    /// Добавление viewForNavigationBar с кнопками на navigationBar
+    private func setupSettingsNavigationBar() {
+        navigationItem.titleView = viewForNavigationBar
+        navigationItem.titleView?.widthAnchor.constraint(equalToConstant: view.bounds.width - Constants.titleViewWidthConstant).isActive = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
     }
     
     private func setupTable() {
@@ -45,24 +55,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.register(ForecastTodayCell.self, forCellReuseIdentifier: ForecastTodayCell.identifier)
         tableView.register(DetailedForecastTodayCell.self, forCellReuseIdentifier: DetailedForecastTodayCell.identifier)
         tableView.register(Forecast5DaysCell.self, forCellReuseIdentifier: Forecast5DaysCell.identifier)
-    }
-    
-    
-    
-    /// Добавление viewForNavigationBar с кнопками на navigationBar
-    private func setupSettingsNavigationBar() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.addSubview(viewForNavigationBar)
-        viewForNavigationBar.clipsToBounds = true
-        viewForNavigationBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            viewForNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor),
-            viewForNavigationBar.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
-            viewForNavigationBar.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
-            viewForNavigationBar.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)
-            ])
     }
     
     private func setupConstraints() {
@@ -119,7 +111,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
-//MARK: - DetailedForecastTodayCellDelegate
+//MARK: - extension: DetailedForecastTodayCellDelegate
 
 extension ViewController: DetailedForecastTodayCellDelegate {
     func showDetailedViewController() {
