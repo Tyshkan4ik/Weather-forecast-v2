@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+/// Делегат вью ViewForNavigationBar с переходом на FavoritesViewController
+protocol ViewForNavigationBarDelegate: AnyObject {
+    func showFavoritesViewController()
+    //func update(_ cell: DetailedCell)
+}
+
 /// View для NavigationBar
 class ViewForNavigationBar: UIView {
     
@@ -18,6 +24,8 @@ class ViewForNavigationBar: UIView {
     }
     
     //MARK: - Properties
+    
+    weak var delegate: ViewForNavigationBarDelegate?
     
     let favoritesButton: UIButton = {
         let button = UIButton()
@@ -56,6 +64,7 @@ class ViewForNavigationBar: UIView {
         setupElement()
         setupConstraints()
         translatesAutoresizingMaskIntoConstraints = false
+        favoritesButton.addTarget(self, action: #selector(presentFavoritesViewController), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -85,5 +94,11 @@ class ViewForNavigationBar: UIView {
             searchBar.searchBar.topAnchor.constraint(equalTo: topAnchor),
             searchBar.searchBar.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    /// Открывает DetailedViewController
+    @objc
+    private func presentFavoritesViewController() {
+        delegate?.showFavoritesViewController()
     }
 }

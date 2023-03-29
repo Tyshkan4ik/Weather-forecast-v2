@@ -8,20 +8,20 @@
 import UIKit
 
 
-/// Градиент цвета. Используется в ячейке ForecastTodayCell
+/// Градиент цвета. Используется в ячейке ForecastTodayCell и FavoritesCell
 class GradientView: UIView {
 
     private enum Constatns {
-        static let cornerRadius: CGFloat = 40
+        //static let cornerRadius: CGFloat = 40
         static let startPoint: CGPoint = CGPoint(x: 0, y: 0)
         static let endPoint: CGPoint = CGPoint(x: 0.6, y: 1)
     }
     
     let gradient = CAGradientLayer()
     
-    init(colors: [UIColor?]) {
+    init(colors: [UIColor?], cornerRadius: CGFloat) {
         super.init(frame: .zero)
-        gradient.cornerRadius = Constatns.cornerRadius
+        gradient.cornerRadius = cornerRadius
         gradient.startPoint = Constatns.startPoint
         gradient.endPoint = Constatns.endPoint
         gradient.frame = bounds

@@ -47,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationItem.titleView?.widthAnchor.constraint(equalToConstant: view.bounds.width - Constants.titleViewWidthConstant).isActive = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        viewForNavigationBar.delegate = self
     }
     
     private func setupTable() {
@@ -116,6 +117,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 extension ViewController: DetailedForecastTodayCellDelegate {
     func showDetailedViewController() {
         let controller = DetailedViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+//MARK: - extension: ViewForNavigationBarDelegate
+
+extension ViewController: ViewForNavigationBarDelegate {
+    func showFavoritesViewController() {
+        let controller = FavoritesViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
 }

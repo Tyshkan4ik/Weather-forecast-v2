@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8134547929CE49CD009E3164 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134547829CE49CD009E3164 /* Test.swift */; };
+		8134547929CE49CD009E3164 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134547829CE49CD009E3164 /* SearchList.swift */; };
 		8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */; };
 		8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893C29CA140B00F41B20 /* DayCellForCollection.swift */; };
 		8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */; };
 		8135896129CDA59B00F41B20 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896029CDA59B00F41B20 /* DetailedViewController.swift */; };
 		8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135896329CDA91400F41B20 /* DetailedCell.swift */; };
 		8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */; };
+		81BE5F9B29D355FB00683EBA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */; };
+		81BE5F9E29D37D4A00683EBA /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE5F9D29D37D4A00683EBA /* FavoritesCell.swift */; };
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
 		81CB262429C36F0A004966A9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB262329C36F0A004966A9 /* GradientView.swift */; };
 		81CB262729C38196004966A9 /* a_AvanteBs_ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */; };
@@ -31,13 +33,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8134547829CE49CD009E3164 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		8134547829CE49CD009E3164 /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
 		8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysCell.swift; sourceTree = "<group>"; };
 		8135893C29CA140B00F41B20 /* DayCellForCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellForCollection.swift; sourceTree = "<group>"; };
 		8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewForCollectionCell.swift; sourceTree = "<group>"; };
 		8135896029CDA59B00F41B20 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		8135896329CDA91400F41B20 /* DetailedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCell.swift; sourceTree = "<group>"; };
 		8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForNavigationBar.swift; sourceTree = "<group>"; };
+		81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		81BE5F9D29D37D4A00683EBA /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
 		81CB262329C36F0A004966A9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		81CB262629C38196004966A9 /* a_AvanteBs_ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = a_AvanteBs_ExtraBold.ttf; sourceTree = "<group>"; };
@@ -83,6 +87,14 @@
 			path = DetailedScen;
 			sourceTree = "<group>";
 		};
+		81BE5F9C29D37CAB00683EBA /* FavoritesScen */ = {
+			isa = PBXGroup;
+			children = (
+				81BE5F9D29D37D4A00683EBA /* FavoritesCell.swift */,
+			);
+			path = FavoritesScen;
+			sourceTree = "<group>";
+		};
 		81CB25FB29C1E220004966A9 /* MainScen */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +111,7 @@
 			children = (
 				81CB25FB29C1E220004966A9 /* MainScen */,
 				8135896229CDA88D00F41B20 /* DetailedScen */,
+				81BE5F9C29D37CAB00683EBA /* FavoritesScen */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -166,7 +179,7 @@
 			children = (
 				81F9D81F29C0B08E00475D19 /* FactoryView.swift */,
 				8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */,
-				8134547829CE49CD009E3164 /* Test.swift */,
+				8134547829CE49CD009E3164 /* SearchList.swift */,
 				81CB262C29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift */,
 				81CB25FF29C1E242004966A9 /* Cell */,
 			);
@@ -178,6 +191,7 @@
 			children = (
 				81F9D7FF29C07F1100475D19 /* ViewController.swift */,
 				8135896029CDA59B00F41B20 /* DetailedViewController.swift */,
+				81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,8 +303,10 @@
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,
+				81BE5F9B29D355FB00683EBA /* FavoritesViewController.swift in Sources */,
 				8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */,
-				8134547929CE49CD009E3164 /* Test.swift in Sources */,
+				8134547929CE49CD009E3164 /* SearchList.swift in Sources */,
+				81BE5F9E29D37D4A00683EBA /* FavoritesCell.swift in Sources */,
 				8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */,
 				8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */,
 				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,

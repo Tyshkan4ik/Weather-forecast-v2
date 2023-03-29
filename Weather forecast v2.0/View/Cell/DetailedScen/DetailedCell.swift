@@ -12,7 +12,6 @@ import UIKit
 class DetailedCell: UITableViewCell {
     
     private enum Constants {
-        static let backgroundColor = "D6F0FA"
         static let symbolWidthConstant: CGFloat = 50
         static let separetorTopConstant: CGFloat = 8
         static let separetorWidthConstant: CGFloat = 0.4
@@ -65,9 +64,10 @@ class DetailedCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(hex: Constants.backgroundColor)
+        backgroundColor = .clear
         setupElements()
         setupConstraints()
+        selectionStyle = .none // отменить выделение ячейки
     }
     
     required init?(coder: NSCoder) {

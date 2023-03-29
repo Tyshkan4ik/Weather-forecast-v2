@@ -17,6 +17,7 @@ final class ForecastTodayCell: UITableViewCell {
         static let backgroundColor = "D6F0FA"
         static let gradientColorOne = "69E1D5"
         static let gradientColorTwo = "00ADFF"
+        static let cornerRadiusView: CGFloat = 40
         static let viewBackgroundTopConstant: CGFloat = 15
         static let viewBackgroundLeadingConstant: CGFloat = 20
         static let viewBackgroundTrailingConstant: CGFloat = -20
@@ -46,7 +47,7 @@ final class ForecastTodayCell: UITableViewCell {
     }
     
     private let viewBackground: GradientView = {
-        let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)])
+        let view = GradientView(colors: [UIColor(hex: Constants.gradientColorOne), UIColor(hex: Constants.gradientColorTwo)], cornerRadius: Constants.cornerRadiusView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -96,7 +97,7 @@ final class ForecastTodayCell: UITableViewCell {
     private let degreesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "-3"
+        label.text = "-3°"
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)

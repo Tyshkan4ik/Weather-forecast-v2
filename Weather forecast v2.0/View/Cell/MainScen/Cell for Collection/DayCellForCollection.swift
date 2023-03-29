@@ -81,7 +81,7 @@ class DayCellForCollection: UICollectionViewCell {
     
     private let degrees: UILabel = {
         let label = UILabel()
-        label.text = "7"
+        label.text = "7°"
         label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
