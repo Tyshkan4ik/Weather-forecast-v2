@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812B028629DECC58008C1F48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B028529DECC58008C1F48 /* LocationManager.swift */; };
 		8134547929CE49CD009E3164 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134547829CE49CD009E3164 /* SearchList.swift */; };
 		8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */; };
 		8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893C29CA140B00F41B20 /* DayCellForCollection.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		812B028529DECC58008C1F48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8134547829CE49CD009E3164 /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
 		8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysCell.swift; sourceTree = "<group>"; };
 		8135893C29CA140B00F41B20 /* DayCellForCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellForCollection.swift; sourceTree = "<group>"; };
@@ -71,6 +73,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		812B027329DD5CF7008C1F48 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				812B027529DD5D15008C1F48 /* cervices */,
+				812B027429DD5D09008C1F48 /* model */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		812B027429DD5D09008C1F48 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		812B027529DD5D15008C1F48 /* cervices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cervices;
+			sourceTree = "<group>";
+		};
+		812B028429DECC2B008C1F48 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				812B028529DECC58008C1F48 /* LocationManager.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 		8135893B29CA12FC00F41B20 /* Cell for Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +191,8 @@
 				81F9D81429C0840F00475D19 /* Controller */,
 				81F9D81929C0A82400475D19 /* Extension */,
 				81CB262229C36ED7004966A9 /* Helpers */,
+				812B028429DECC2B008C1F48 /* LocationManager */,
+				812B027329DD5CF7008C1F48 /* API */,
 				81F9D81629C0847900475D19 /* Core Data */,
 				81CB262529C38157004966A9 /* Font */,
 				81F9D80729C07F1300475D19 /* Assets.xcassets */,
@@ -300,6 +335,7 @@
 				81F9D80629C07F1100475D19 /* Weather_forecast_v2_0.xcdatamodeld in Sources */,
 				8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */,
 				81CB262929C3845F004966A9 /* NewFonts.swift in Sources */,
+				812B028629DECC58008C1F48 /* LocationManager.swift in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */,
 				81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */,

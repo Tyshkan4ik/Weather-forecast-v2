@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationManagerDelegate {
     
     /// Константы используемые в данном классе
     private enum Constants {
@@ -22,13 +22,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private let factoryView = FactoryView()
     private lazy var tableView = factoryView.table
     
-     let viewForNavigationBar = ViewForNavigationBar()
+    let viewForNavigationBar = ViewForNavigationBar()
+    
+    var location = LocationManager()
 
     
     //MARK: - Methods
     
+    // TEST
+    
+    
+    //TEST ENDED
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        location.delegate = self
         view.backgroundColor = UIColor(hex: Constants.backgroundColor)
         setupElements()
         setupConstraints()
@@ -65,6 +73,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    //MARK: - LocationManagerDelegate
+    
+    func didLocationUpdate(lon: String, lat: String) {
+        
     }
     
     //MARK: - UITableViewDataSource
