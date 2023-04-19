@@ -77,7 +77,7 @@ class DetailedForecastTodayCell: UITableViewCell {
         return stack
     }()
     
-    private let item1 = ItemViewforStackFromDetailedCell()
+    private var item1 = ItemViewforStackFromDetailedCell()
     private let item2 = ItemViewforStackFromDetailedCell()
     private let item3 = ItemViewforStackFromDetailedCell()
     private let item4 = ItemViewforStackFromDetailedCell()
@@ -92,6 +92,8 @@ class DetailedForecastTodayCell: UITableViewCell {
         setupElements()
         setupConstaints()
         detailedButton.addTarget(self, action: #selector(presentDetailedViewController), for: .touchUpInside)
+        setupDefaultTitle()
+        setupDefaultImage()
     }
     
     required init?(coder: NSCoder) {
@@ -134,9 +136,38 @@ class DetailedForecastTodayCell: UITableViewCell {
         ])
     }
     
+    /// Устанавливаем дефолтное значение Названия элемента в стеке
+    private func setupDefaultTitle() {
+        item1.title.text = "Восход"
+        item2.title.text = "Ощущается"
+        item3.title.text = "Закат"
+        item4.title.text = "Ветер м/с"
+        item5.title.text = "Порыв ветра"
+        item6.title.text = "Давление"
+    }
+    
+    /// Устанавливаем дефолтное значение Картинка элемента в стеке
+    private func setupDefaultImage() {
+        item1.image.image = UIImage(systemName: "sunrise")
+        item2.image.image = UIImage(systemName: "thermometer.sun")
+        item3.image.image = UIImage(systemName: "sunset")
+        item4.image.image = UIImage(systemName: "wind")
+        item5.image.image = UIImage(systemName: "tornado")
+        item6.image.image = UIImage(systemName: "person.wave.2")
+    }
+    
     /// Открывает DetailedViewController
     @objc
     private func presentDetailedViewController() {
         delegate?.showDetailedViewController()
+    }
+    
+    func setup(model: DetailedForecastTodayModel?) {
+        item1.setup(model: model?.element1)
+        item2.setup(model: model?.element2)
+        item3.setup(model: model?.element3)
+        item4.setup(model: model?.element4)
+        item5.setup(model: model?.element5)
+        item6.setup(model: model?.element6)
     }
 }

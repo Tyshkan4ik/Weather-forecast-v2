@@ -26,6 +26,8 @@ class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         return String(describing: self)
     }
     
+    private var forecast5DaysModels: [Forecast5DaysModel]?
+    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionView)
@@ -49,7 +51,7 @@ class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         collectionView.delegate = self
         selectionStyle = .none
         collectionView.showsHorizontalScrollIndicator = false
-        selectItem()
+     //   selectItem()
     }
     
     required init?(coder: NSCoder) {
@@ -73,22 +75,26 @@ class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     
     /// Выбор Item по дефолту
     private func selectItem() {
-        let indexPath = IndexPath(row: 0, section: 0)
+        let indexPath: IndexPath = IndexPath(row: 0, section: 0)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
     }
     
+    func setup(model: [Forecast5DaysModel]?) {
+        forecast5DaysModels = model
+        collectionView.reloadData()
+        selectItem()
+    }
     
     //MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return test?.count ?? 0
-        return 5
+        return forecast5DaysModels?.count ?? 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCellForCollection.identifier, for: indexPath) as! DayCellForCollection
-//        let dodo = test?[indexPath.row]
-//        myCell.setup(model: dodo)
+        let forecast5DaysModel = forecast5DaysModels?[indexPath.row]
+        myCell.setup(model: forecast5DaysModel)
         return myCell
     }
     

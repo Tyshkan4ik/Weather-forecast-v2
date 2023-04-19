@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         static let screenHeight: CGFloat = UIScreen.main.bounds.height
         static let heightDivider: CGFloat = 3.3
         static let titleViewWidthConstant: CGFloat = 34
+        static let conversionHPaInMmHg: Double = 0.75006375541921
     }
     
     //MARK: - Properties
@@ -22,9 +23,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private let factoryView = FactoryView()
     private lazy var tableView = factoryView.table
     
-    let viewForNavigationBar = ViewForNavigationBar()
+    private let viewForNavigationBar = ViewForNavigationBar()
     
-    var location = LocationManager()
+    private var location = LocationManager()
+    
+    private let networkService = NetworkService()
+    private var forecastCityModel: ForecastCityModel?
 
     
     //MARK: - Methods
@@ -43,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupTable()
         setupSettingsNavigationBar()
         definesPresentationContext = true // позволяет показать navigationBar поверх SearchList
+        forecastCityModel = ForecastCityModel()
     }
     
     private func setupElements() {
@@ -75,10 +80,68 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         ])
     }
     
+    /// Получаем данные с сервера погоды и передаем их в модели
+    private func getForecast(lon: String, lat: String) {
+        networkService.getForecastToday(for: ForecastTodayRequest(lat: lat, lon: lon)) { [weak self] result in
+            switch result {
+            case let .success(model):
+                self?.forecastCityModel?.firstSectionModel = ForecastTodayModel(city: model.name, temp: "\(Int(model.main.temp))°", timeZone: model.timezone, weatherIcon: model.weather.first?.icon ?? "", id: model.id)
+                self?.forecastCityModel?.secondSectionModel = DetailedForecastTodayModel(element1: .init(value: self?.transformTimeUnix(unix: model.sys.sunrise, timeZone: model.timezone) ?? ""), element2: .init(value: "\(model.main.feelsLike)"), element3: .init(value: self?.transformTimeUnix(unix: model.sys.sunset, timeZone: model.timezone) ?? ""), element4: .init(value: "\(model.wind.speed)"), element5: .init(value: "\(model.wind.gust ?? 0)"), element6: .init(value: self?.conversionHPaInMmHg(hPa: model.main.pressure) ?? ""))
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+        networkService.getForecast5Days(for: Forecast5daysRequest(lat: lat, lon: lon)) { [weak self] result in
+            switch result {
+            case let .success(model):
+                let timeZone = model.city.timezone
+                let arrayModel = model.list.filter({
+                    let time = self?.transformTimeUnix(unix: $0.dt , timeZone: model.city.timezone) ?? ""
+                    return time == "15:00" || time == "14:00" || time == "13:00" || time == "14:30"
+                })
+                    .map {
+                        Forecast5DaysModel(temp: $0.main.temp, icon: $0.weather.first?.icon ?? "", date: $0.dt, timeZone: timeZone, description: $0.weather.first?.description ?? "")
+                    }
+                self?.forecastCityModel?.thirdSectionModel = arrayModel
+    print(arrayModel)
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    /// Перевод величины давления из hPa в mmHg
+    /// - Parameter hPa: Давление в hPa
+    /// - Returns: Давление в mmHg, String
+    private func conversionHPaInMmHg(hPa: Int) -> String {
+        "\(Int(Double(hPa) * Constants.conversionHPaInMmHg))"
+    }
+    
+    /// Преобразуем время из unix, UTC с учетом часового пояса
+    /// - Parameters:
+    ///   - unix: Время в unix
+    ///   - timeZone: Часовой пояс
+    /// - Returns: Получаем время с учетом часового пояса
+    private func transformTimeUnix(unix: Double, timeZone: Int) -> String {
+        let date = NSDate(timeIntervalSince1970: unix)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "HH:mm"
+        dayTimePeriodFormatter.timeZone = NSTimeZone(forSecondsFromGMT: timeZone) as TimeZone?
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateString
+    }
+    
     //MARK: - LocationManagerDelegate
     
     func didLocationUpdate(lon: String, lat: String) {
-        
+        getForecast(lon: lon, lat: lat)
     }
     
     //MARK: - UITableViewDataSource
@@ -96,17 +159,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             guard let cellFirst = tableView.dequeueReusableCell(withIdentifier: ForecastTodayCell.identifier, for: indexPath) as? ForecastTodayCell else {
                 return UITableViewCell()
             }
+            cellFirst.setup(model: forecastCityModel)
+            //print(forecastCityModel)
             return cellFirst
         } else if indexPath.section == 1 {
             guard let cellSecond = tableView.dequeueReusableCell(withIdentifier: DetailedForecastTodayCell.identifier, for: indexPath) as? DetailedForecastTodayCell else {
                 return UITableViewCell()
             }
             cellSecond.delegate = self
+            cellSecond.setup(model: forecastCityModel?.secondSectionModel)
             return cellSecond
         } else {
             guard let cellThird = tableView.dequeueReusableCell(withIdentifier: Forecast5DaysCell.identifier, for: indexPath) as? Forecast5DaysCell else {
                 return UITableViewCell()
             }
+            
+            cellThird.setup(model: forecastCityModel?.thirdSectionModel)
             return cellThird
         }
     }

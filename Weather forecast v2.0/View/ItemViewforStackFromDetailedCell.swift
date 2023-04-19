@@ -17,17 +17,14 @@ class ItemViewforStackFromDetailedCell: UIView {
     
     //MARK: - Properties
     
-    private let image: UIImageView = {
+    let image: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(systemName: "person")
-        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private let titl: UILabel = {
+    let title: UILabel = {
         let label = UILabel()
-        label.text = "Test"
         label.textColor = .lightGray
         label.textAlignment = .center
         label.numberOfLines = Constants.numberOfLines
@@ -62,7 +59,7 @@ class ItemViewforStackFromDetailedCell: UIView {
     
     private func setupElement() {
         addSubview(image)
-        addSubview(titl)
+        addSubview(title)
         addSubview(valueTitl)
     }
     
@@ -73,16 +70,22 @@ class ItemViewforStackFromDetailedCell: UIView {
             image.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor),
             image.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
             
-            titl.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Constants.titleTopConstant),
-            titl.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titl.trailingAnchor.constraint(equalTo: trailingAnchor),
+            title.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Constants.titleTopConstant),
+            title.leadingAnchor.constraint(equalTo: leadingAnchor),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            valueTitl.topAnchor.constraint(equalTo: titl.bottomAnchor),
+            valueTitl.topAnchor.constraint(equalTo: title.bottomAnchor),
             valueTitl.centerXAnchor.constraint(equalTo: centerXAnchor),
             valueTitl.leadingAnchor.constraint(equalTo: leadingAnchor),
             valueTitl.trailingAnchor.constraint(equalTo: trailingAnchor),
             valueTitl.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         image.setContentHuggingPriority(.defaultHigh, for: .vertical)
+    }
+   
+    func setup(model: DetailedForecastTodayModel.ElementModel?) {
+//        image.image = model?.image
+//        titl.text = model?.title.firstUppercased
+        valueTitl.text = model?.value//.firstUppercased
     }
 }

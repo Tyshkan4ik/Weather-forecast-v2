@@ -20,7 +20,7 @@ class DayCellForCollection: UICollectionViewCell {
         static let dateFontSize: CGFloat = 25
         static let dateAlfa: CGFloat = 0.5
         static let degreesFontSize: CGFloat = 15
-        static let infFontSize: CGFloat = 20
+        static let infFontSize: CGFloat = 44
         static let itemCornerRadius: CGFloat = 35
         static let dayWeekTopConstant: CGFloat = 20
         static let imageWeatherTopConstant: CGFloat = 5
@@ -62,7 +62,6 @@ class DayCellForCollection: UICollectionViewCell {
         label.textColor = .black
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayWeekFontSize)
         label.adjustsFontSizeToFitWidth = true
-        label.text = "ПН"
         label.alpha = Constants.dayWeekAlfa
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -73,7 +72,6 @@ class DayCellForCollection: UICollectionViewCell {
         label.textColor = .black
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dateFontSize)
         label.adjustsFontSizeToFitWidth = true
-        label.text = "02/11"
         label.alpha = Constants.dateAlfa
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -81,7 +79,6 @@ class DayCellForCollection: UICollectionViewCell {
     
     private let degrees: UILabel = {
         let label = UILabel()
-        label.text = "7°"
         label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
@@ -93,6 +90,9 @@ class DayCellForCollection: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .black
         label.text = "info"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.alpha = Constants.dayWeekAlfa
         label.adjustsFontSizeToFitWidth = true
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.infFontSize)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -140,12 +140,80 @@ class DayCellForCollection: UICollectionViewCell {
             
             inf.topAnchor.constraint(equalTo: degrees.bottomAnchor),
             inf.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            inf.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.infBottomConstant),
+            //inf.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.infBottomConstant),
+            inf.widthAnchor.constraint(equalToConstant: contentView.bounds.width)
         ])
         dayWeek.setContentHuggingPriority(.defaultHigh, for: .vertical)
         date.setContentHuggingPriority(.defaultHigh, for: .vertical)
         imageWeather.setContentHuggingPriority(.defaultHigh, for: .vertical)
         degrees.setContentHuggingPriority(.defaultLow, for: .vertical)
         inf.setContentHuggingPriority(.defaultLow, for: .vertical)
+    }
+    
+    func setup(model: Forecast5DaysModel?) {
+        degrees.text = String(format: "%0.1f", model?.temp ?? 0)
+        imageWeather.image = UIImage(named: updateImageMain(icon: model?.icon ?? ""))
+        dayWeek.text = transformTimeUnix(unix: model?.date ?? 0, timeZone: model?.timeZone ?? 0)
+        date.text = transformTimeUnix2(unix: model?.date ?? 0, timeZone: model?.timeZone ?? 0)
+        inf.text = model?.description
+//        print(model?.description ?? "")
+    }
+    
+    /// Преобразуем время из unix, UTC с учетом часового пояса
+    /// - Parameters:
+    ///   - unix: Время в unix
+    ///   - timeZone: Часовой пояс
+    /// - Returns: Получаем время с учетом часового пояса
+    private func transformTimeUnix(unix: Double, timeZone: Int) -> String {
+        let date = NSDate(timeIntervalSince1970: unix)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "EE"
+        dayTimePeriodFormatter.timeZone = NSTimeZone(forSecondsFromGMT: timeZone) as TimeZone?
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateString
+    }
+    
+    /// Преобразуем время из unix, UTC с учетом часового пояса
+    /// - Parameters:
+    ///   - unix: Время в unix
+    ///   - timeZone: Часовой пояс
+    /// - Returns: Получаем время с учетом часового пояса
+    private func transformTimeUnix2(unix: Double, timeZone: Int) -> String {
+        let date = NSDate(timeIntervalSince1970: unix)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "dd/MM"
+        dayTimePeriodFormatter.timeZone = NSTimeZone(forSecondsFromGMT: timeZone) as TimeZone?
+        let dateString = dayTimePeriodFormatter.string(from: date as Date)
+        return dateString
+    }
+    
+    func updateImageMain(icon: String) -> String {
+        let value = icon
+        switch value {
+        case "01d":
+            return "clearDay"
+        case "01n":
+            return "clearNight"
+        case "02d":
+            return "fewCloudsDay"
+        case "02n":
+            return "fewCloudsNight"
+        case "03d", "03n":
+            return "scatteredClouds"
+        case "04d", "04n":
+            return "clouds"
+        case "09d", "09n":
+            return "drizzle"
+        case "10d", "10n":
+            return "heavyRain"
+        case "11d", "11n":
+            return "thunderstorm"
+        case "13d", "13n":
+            return "snow"
+        case "50d", "50n":
+            return "mist"
+        default:
+            return "fewCloudsDay"
+        }
     }
 }

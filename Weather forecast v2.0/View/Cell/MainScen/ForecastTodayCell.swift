@@ -177,4 +177,66 @@ final class ForecastTodayCell: UITableViewCell {
     private func setupHuggingPriority() {
         dayOfTheWeek.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
+    
+    func setup(model: ForecastCityModel?) {
+        titlCity.text = model?.firstSectionModel?.city
+        degreesLabel.text = model?.firstSectionModel?.temp
+        dayOfTheWeek.text = selectionDayOfWeek(valueT: model?.firstSectionModel?.timeZone ?? 0)
+        dateLabel.text = selectionDate(valueT: model?.firstSectionModel?.timeZone ?? 0)
+        imageWeather.image = UIImage(named: updateImageMain(icon: model?.firstSectionModel?.weatherIcon ?? ""))
+    }
+    
+    /// Преобразуем день недели из unix, UTC в дату
+    /// - Parameter valueT: день недели в unix
+    /// - Returns: День недели (прописью) в формате String
+    func selectionDayOfWeek(valueT: Int) -> String {
+        let dateFormatter = DateFormatter()
+        let value = valueT
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: value) as TimeZone
+        dateFormatter.dateFormat = "EEEE"
+        let weekDay = dateFormatter.string(from: Date())
+        return weekDay.capitalized
+    }
+    
+    /// Преобразуем день недели и месяц из unix, UTC в дату
+    /// - Parameter valueT: дата в unix
+    /// - Returns: День недели и месяц (в цифрах) в формате String
+    func selectionDate(valueT: Int) -> String {
+        let dateFormatter = DateFormatter()
+        let value = valueT
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: value) as TimeZone
+        dateFormatter.dateFormat = "dd/MM"
+        let date = dateFormatter.string(from: Date())
+        return date
+    }
+    
+    func updateImageMain(icon: String) -> String {
+        let value = icon
+        switch value {
+        case "01d":
+            return "clearDay"
+        case "01n":
+            return "clearNight"
+        case "02d":
+            return "fewCloudsDay"
+        case "02n":
+            return "fewCloudsNight"
+        case "03d", "03n":
+            return "scatteredClouds"
+        case "04d", "04n":
+            return "clouds"
+        case "09d", "09n":
+            return "drizzle"
+        case "10d", "10n":
+            return "heavyRain"
+        case "11d", "11n":
+            return "thunderstorm"
+        case "13d", "13n":
+            return "snow"
+        case "50d", "50n":
+            return "mist"
+        default:
+            return "dde"
+        }
+    }
 }
