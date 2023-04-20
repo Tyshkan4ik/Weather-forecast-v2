@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-protocol MenuViewControllerDelegate: AnyObject {
-    //    func deleteCityFromFavorite(id: FavoritesCellModel?)
-    //    func changeCoordinateCity(coordinate: CoordinatesCellModel?)
+protocol FavoritesViewControllerDelegate: AnyObject {
+        func deleteCityFromFavorite(id: FavoritesCityModel?)
+        func changeCoordinateCity(coordinate: FavoritesCityModel?)
 }
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -21,20 +21,27 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     //MARK: - Properties
     
+    weak var delegate: FavoritesViewControllerDelegate?
+    
     private let factoryView = FactoryView()
     private lazy var tableView = factoryView.table
+    
+    private var favoritesCityArray: Array<CityModel?> = []
+    
+    private let networkService = NetworkService()
+    private var favoritesCityModel: [FavoritesCityModel] = []
     
     
     //MARK: - Init
     
-    //    init(coordinatesCityModel: Array<CityModel?>) {
-    //        self.coordinatesCellModel = coordinatesCityModel
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    //
-    //    required init?(coder: NSCoder) {
-    //        return nil
-    //    }
+        init(favoritesCity: Array<CityModel?>) {
+            favoritesCityArray = favoritesCity
+            super.init(nibName: nil, bundle: nil)
+        }
+    
+        required init?(coder: NSCoder) {
+            return nil
+        }
     
     //MARK: - Methods
     
@@ -44,18 +51,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         setupElements()
         setupConstraints()
         setupTable()
-        
-        //        let group = DispatchGroup()
-        //        coordinatesCellModel.forEach {
-        //            group.enter()
-        //            self.fetchWeather(lon: "\($0?.lon ?? 0)" , lat: "\($0?.lat ?? 0)") {
-        //                group.leave()
-        //            }
-        //        }
-        //
-        //        group.notify(queue: .main) {
-        //            self.tableView.reloadData()
-        //        }
+        getForecast()
     }
     
     private func setupElements() {
@@ -71,18 +67,33 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
         ])
     }
     
-    //    private func fetchWeather(lon: String, lat: String, completion: @escaping () -> Void) {
-    //        service.fetchCurrentWeather(for: CoordinateWeatherSource(lat: lat, lon: lon)) { [weak self] result in
-    //            switch result {
-    //            case let .success(model):
-    //                let favoriteCity = FavoritesCellModel(cityName: model.name, temperature: model.main.temp, description: model.weather.first?.description ?? "", lat: "\(model.coord.lat)", lon: "\(model.coord.lon)", id: model.id)
-    //                self?.favoritesCellModel.append(favoriteCity)
-    //                completion()
-    //            case let.failure(error):
-    //                print(error.localizedDescription)
-    //            }
-    //        }
-    //    }
+        private func getWeather(lon: String, lat: String, completion: @escaping () -> Void) {
+            networkService.getForecastToday(for: ForecastTodayRequest(lat: lat, lon: lon)) { [weak self] result in
+                switch result {
+                case let .success(model):
+                    let favoriteCity = FavoritesCityModel(cityName: model.name, temperature: model.main.temp, description: model.weather.first?.description ?? "", lat: "\(model.coord.lat)", lon: "\(model.coord.lon)", id: model.id)
+                    self?.favoritesCityModel.append(favoriteCity)
+                    completion()
+                case let.failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    
+    /// Получить данные о погоде с сервера и обновить таблицу
+    private func getForecast() {
+        let group = DispatchGroup()
+        favoritesCityArray.forEach {
+            group.enter()
+            self.getWeather(lon: "\($0?.lon ?? 0)" , lat: "\($0?.lat ?? 0)") {
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+        }
+    }
     
     
     func setupTable() {
@@ -99,16 +110,15 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //favoritesCellModel.count
-        5
+        favoritesCityModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesCell.identifier, for: indexPath) as? FavoritesCell else {
             return UITableViewCell()
         }
-        //        let model = favoritesCellModel[indexPath.row]
-        //        cell.setup(model: model)
+                let model = favoritesCityModel[indexPath.row]
+                cell.setup(model: model)
         return cell
     }
     
@@ -116,14 +126,14 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //    let coordinate = CoordinatesCellModel(lat: favoritesCellModel[indexPath.row].lat, lon: favoritesCellModel[indexPath.row].lon, id: favoritesCellModel[indexPath.row].id)
-        //    delegate?.changeCoordinateCity(coordinate: coordinate)
+        delegate?.changeCoordinateCity(coordinate: favoritesCityModel[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let actionDelete = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, _ in
-            //            self?.delegate?.deleteCityFromFavorite(id: self?.favoritesCellModel[indexPath.row])
-            //            self?.favoritesCellModel.remove(at: indexPath.row)
+                        self?.delegate?.deleteCityFromFavorite(id: self?.favoritesCityModel[indexPath.row])
+                        self?.favoritesCityModel.remove(at: indexPath.row)
             tableView.reloadData()
         }
         actionDelete.image = UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal)

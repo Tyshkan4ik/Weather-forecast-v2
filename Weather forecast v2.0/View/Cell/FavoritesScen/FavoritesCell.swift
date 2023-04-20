@@ -118,9 +118,9 @@ class FavoritesCell: UITableViewCell {
         ])
     }
     
-//    func setup(model: FavoritesCellModel?) {
-//        cityLabel.text = model?.cityName
-//        degrees.text = String(format: "%0.1f", model?.temperature ?? 0) + "°"
-//        infoLabel.text = model?.description
-//    }
+    func setup(model: FavoritesCityModel?) {
+        cityLabel.text = model?.cityName
+        degrees.text = String(format: "%0.1f", model?.temperature ?? 0) + "°"
+        infoLabel.text = model?.description
+    }
 }

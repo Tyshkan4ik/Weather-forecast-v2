@@ -18,7 +18,7 @@ class DetailedCell: UITableViewCell {
         static let separetorBottomConstant: CGFloat = -8
         static let descriptionLabelLeadingConstant: CGFloat = 10
         static let valueLabelTopConstant: CGFloat = 10
-        static let valueLabelWidthConstant: CGFloat = 160
+        static let valueLabelWidthConstant: CGFloat = 100
         static let valueLabelBottomConstant: CGFloat = -10
     }
     
@@ -45,6 +45,7 @@ class DetailedCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Описание показателя"
+        label.numberOfLines = 0
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -95,9 +96,11 @@ class DetailedCell: UITableViewCell {
             separator.widthAnchor.constraint(equalToConstant: Constants.separetorWidthConstant),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: Constants.separetorBottomConstant),
             
-            descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            //descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: Constants.descriptionLabelLeadingConstant),
             descriptionLabel.trailingAnchor.constraint(equalTo: valueLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.valueLabelTopConstant),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.valueLabelBottomConstant),
             
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.valueLabelTopConstant),
             valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -106,10 +109,11 @@ class DetailedCell: UITableViewCell {
         ])
     }
     
-    //    func setup(model: [MoreCellModel.Row]?) {
-    //        descriptionLabel.text = model?.first?.titl
-    //        valueLabel.text = model?.first?.valueTitle
-    //        symbol.image = model?.first?.icon
-    //    }
+    
+        func setup(model: String, symbol: String, description: String) {
+            valueLabel.text = model
+            self.symbol.image = UIImage(systemName: symbol)
+            descriptionLabel.text = description
+        }
 }
 

@@ -29,7 +29,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private let networkService = NetworkService()
     private var forecastCityModel: ForecastCityModel?
-
+    private var cityModel: CityModel?
+    
+    var favoritesCityArray: Array<CityModel?> = []
+    
+    var lon: String?
+    var lat: String?
     
     //MARK: - Methods
     
@@ -48,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupSettingsNavigationBar()
         definesPresentationContext = true // позволяет показать navigationBar поверх SearchList
         forecastCityModel = ForecastCityModel()
+        cityModel = CityModel()
     }
     
     private func setupElements() {
@@ -80,13 +86,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         ])
     }
     
+    /// Округляем число после запятой из сотых в десятичные
+    /// - Parameter value: Число с сотым значением, Double
+    /// - Returns: Число с десчятичным значением после запятой в String
+    private func roundUpToOne(value: Double) -> String {
+        String(round(10 * value) / 10)
+    }
+    
     /// Получаем данные с сервера погоды и передаем их в модели
     private func getForecast(lon: String, lat: String) {
         networkService.getForecastToday(for: ForecastTodayRequest(lat: lat, lon: lon)) { [weak self] result in
             switch result {
             case let .success(model):
+                self?.cityModel?.id = model.id
+                self?.cityModel?.lat = model.coord.lat
+                self?.cityModel?.lon = model.coord.lon
                 self?.forecastCityModel?.firstSectionModel = ForecastTodayModel(city: model.name, temp: "\(Int(model.main.temp))°", timeZone: model.timezone, weatherIcon: model.weather.first?.icon ?? "", id: model.id)
-                self?.forecastCityModel?.secondSectionModel = DetailedForecastTodayModel(element1: .init(value: self?.transformTimeUnix(unix: model.sys.sunrise, timeZone: model.timezone) ?? ""), element2: .init(value: "\(model.main.feelsLike)"), element3: .init(value: self?.transformTimeUnix(unix: model.sys.sunset, timeZone: model.timezone) ?? ""), element4: .init(value: "\(model.wind.speed)"), element5: .init(value: "\(model.wind.gust ?? 0)"), element6: .init(value: self?.conversionHPaInMmHg(hPa: model.main.pressure) ?? ""))
+                self?.forecastCityModel?.secondSectionModel = DetailedForecastTodayModel(element1: .init(value: self?.transformTimeUnix(unix: model.sys.sunrise, timeZone: model.timezone) ?? ""), element2: .init(value: self?.roundUpToOne(value: model.main.feelsLike) ?? ""), element3: .init(value: self?.transformTimeUnix(unix: model.sys.sunset, timeZone: model.timezone) ?? ""), element4: .init(value: "\(model.wind.speed)"), element5: .init(value: "\(model.wind.gust ?? 0)"), element6: .init(value: self?.conversionHPaInMmHg(hPa: model.main.pressure) ?? ""))
+    
             case let .failure(error):
                 print(error.localizedDescription)
             }
@@ -106,12 +123,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         Forecast5DaysModel(temp: $0.main.temp, icon: $0.weather.first?.icon ?? "", date: $0.dt, timeZone: timeZone, description: $0.weather.first?.description ?? "")
                     }
                 self?.forecastCityModel?.thirdSectionModel = arrayModel
-    print(arrayModel)
+                
             case let .failure(error):
                 print(error.localizedDescription)
             }
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
+                self?.checkingFavorites()
             }
         }
     }
@@ -142,6 +160,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func didLocationUpdate(lon: String, lat: String) {
         getForecast(lon: lon, lat: lat)
+        self.lon = lon
+        self.lat = lat
     }
     
     //MARK: - UITableViewDataSource
@@ -192,13 +212,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         return UITableView.automaticDimension
     }
+    
+    // TEST
+    
+    /// Проверяет есть ли город в избранном, если есть помечает кнопку звездочка
+    private func checkingFavorites() {
+        if favoritesCityArray.filter( { $0?.id == cityModel?.id } ).isEmpty {
+            let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / 17, weight: .medium, scale: .default)
+            let image = UIImage(systemName: "star", withConfiguration: config)
+            viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
+            forecastCityModel?.favoritesOnOff = false
+        } else {
+            let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / 17, weight: .medium, scale: .default)
+            let image = UIImage(systemName: "star.fill", withConfiguration: config)
+            viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
+            forecastCityModel?.favoritesOnOff = true
+        }
+    }
+
+    //FINISH
+    
 }
+
 
 //MARK: - extension: DetailedForecastTodayCellDelegate
 
 extension ViewController: DetailedForecastTodayCellDelegate {
+    
     func showDetailedViewController() {
         let controller = DetailedViewController()
+        controller.lon = self.lon
+        controller.lat = self.lat
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -206,8 +250,58 @@ extension ViewController: DetailedForecastTodayCellDelegate {
 //MARK: - extension: ViewForNavigationBarDelegate
 
 extension ViewController: ViewForNavigationBarDelegate {
+    
     func showFavoritesViewController() {
-        let controller = FavoritesViewController()
+        let controller = FavoritesViewController(favoritesCity: favoritesCityArray)
+        controller.delegate = self
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func PressedButtonAddToFavoritest() -> String {
+        if forecastCityModel?.favoritesOnOff == true {
+            forecastCityModel?.favoritesOnOff = false
+            favoritesCityArray.removeAll(where: { $0?.id == cityModel?.id })
+//            CoreDataCityManager.shared.delete(cityId: cityModel)
+            print(favoritesCityArray)
+            print(favoritesCityArray.count)
+            return "star"
+        } else {
+            forecastCityModel?.favoritesOnOff = true
+            
+                favoritesCityArray.append(cityModel)
+            
+//            CoreDataCityManager.shared.save(city: cityModel)
+            print(favoritesCityArray)
+            print(favoritesCityArray.count)
+            return "star.fill"
+        }
+    }
+}
+
+//MARK: - extension: FavoritesViewControllerDelegate
+
+extension ViewController: FavoritesViewControllerDelegate {
+    /// Удаляет город из избранного при скролле
+    /// - Parameter id: модель города, FavoritesCityModel
+    func deleteCityFromFavorite(id: FavoritesCityModel?) {
+        if id?.id == forecastCityModel?.firstSectionModel?.id {
+            let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / 17, weight: .medium, scale: .default)
+            let image = UIImage(systemName: "star", withConfiguration: config)
+            viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
+            //cityModel?.favoritesOnOff = false
+            forecastCityModel?.favoritesOnOff = false
+        }
+        favoritesCityArray.removeAll(where: {$0?.id == id?.id})
+    }
+    
+    func changeCoordinateCity(coordinate: FavoritesCityModel?) {
+        if cityModel?.id != coordinate?.id {
+            getForecast(lon: coordinate?.lon ?? "", lat: coordinate?.lat ?? "")
+            lon = coordinate?.lon ?? ""
+            lat = coordinate?.lat ?? ""
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    
 }

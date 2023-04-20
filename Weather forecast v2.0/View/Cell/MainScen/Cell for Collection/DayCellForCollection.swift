@@ -20,7 +20,7 @@ class DayCellForCollection: UICollectionViewCell {
         static let dateFontSize: CGFloat = 25
         static let dateAlfa: CGFloat = 0.5
         static let degreesFontSize: CGFloat = 15
-        static let infFontSize: CGFloat = 44
+        static let infFontSize: CGFloat = 43
         static let itemCornerRadius: CGFloat = 35
         static let dayWeekTopConstant: CGFloat = 20
         static let imageWeatherTopConstant: CGFloat = 5

@@ -11,6 +11,7 @@ import UIKit
 /// Делегат вью ViewForNavigationBar с переходом на FavoritesViewController
 protocol ViewForNavigationBarDelegate: AnyObject {
     func showFavoritesViewController()
+    func PressedButtonAddToFavoritest() -> String
     //func update(_ cell: DetailedCell)
 }
 
@@ -21,6 +22,8 @@ class ViewForNavigationBar: UIView {
         static let favoritesButtonName = "menu"
         static let addToFavoritesButtonName = "star"
         static let addToFavoritesWidthDivider: CGFloat = 17
+        static let searchBarLeading: CGFloat = 10
+        static let searchBarTrailing: CGFloat = -10
     }
     
     //MARK: - Properties
@@ -65,6 +68,7 @@ class ViewForNavigationBar: UIView {
         setupConstraints()
         translatesAutoresizingMaskIntoConstraints = false
         favoritesButton.addTarget(self, action: #selector(presentFavoritesViewController), for: .touchUpInside)
+        addToFavoritesButton.addTarget(self, action: #selector(addToFavorites), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -89,8 +93,8 @@ class ViewForNavigationBar: UIView {
             addToFavoritesButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             addToFavoritesButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            searchBar.searchBar.leadingAnchor.constraint(equalTo: favoritesButton.trailingAnchor, constant: 10),
-            searchBar.searchBar.trailingAnchor.constraint(equalTo: addToFavoritesButton.leadingAnchor, constant: -10),
+            searchBar.searchBar.leadingAnchor.constraint(equalTo: favoritesButton.trailingAnchor, constant: Constants.searchBarLeading),
+            searchBar.searchBar.trailingAnchor.constraint(equalTo: addToFavoritesButton.leadingAnchor, constant: Constants.searchBarTrailing),
             searchBar.searchBar.topAnchor.constraint(equalTo: topAnchor),
             searchBar.searchBar.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
@@ -100,5 +104,20 @@ class ViewForNavigationBar: UIView {
     @objc
     private func presentFavoritesViewController() {
         delegate?.showFavoritesViewController()
+    }
+    
+    /// Добавляет город в избранное
+    @objc
+    private func addToFavorites() {
+        let value = delegate?.PressedButtonAddToFavoritest() ?? ""
+        changeStar(value: value)
+    }
+    
+    /// Меняем Символ звезды при нажатии
+    /// - Parameter value: Имя systemName Image
+    private func changeStar(value: String) {
+        let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / Constants.addToFavoritesWidthDivider, weight: .medium, scale: .default)
+        let image = UIImage(systemName: value, withConfiguration: config)
+        addToFavoritesButton.setImage(image, for: .normal)
     }
 }
