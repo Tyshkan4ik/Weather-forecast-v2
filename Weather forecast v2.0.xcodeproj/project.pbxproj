@@ -80,7 +80,7 @@
 		81EDEC8529EF24B50097243F /* Forecast5daysRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5daysRequest.swift; sourceTree = "<group>"; };
 		81EDEC8729EF256B0097243F /* Forecast5DaysResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysResponce.swift; sourceTree = "<group>"; };
 		81EDEC8929EF28030097243F /* Forecast5DaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysModel.swift; sourceTree = "<group>"; };
-		81F9D7F829C07F1100475D19 /* Weather forecast v2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather forecast v2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81F9D7F829C07F1100475D19 /* Хорошая Погода.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Хорошая Погода.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F9D7FB29C07F1100475D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81F9D7FD29C07F1100475D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		81F9D7FF29C07F1100475D19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		81F9D7F929C07F1100475D19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				81F9D7F829C07F1100475D19 /* Weather forecast v2.0.app */,
+				81F9D7F829C07F1100475D19 /* Хорошая Погода.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 			);
 			name = "Weather forecast v2.0";
 			productName = "Weather forecast v2.0";
-			productReference = 81F9D7F829C07F1100475D19 /* Weather forecast v2.0.app */;
+			productReference = 81F9D7F829C07F1100475D19 /* Хорошая Погода.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -585,7 +585,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Tyshkan4ik.Weather-forecast-v2-0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Хорошая Погода";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -613,7 +613,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Tyshkan4ik.Weather-forecast-v2-0";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Хорошая Погода";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
