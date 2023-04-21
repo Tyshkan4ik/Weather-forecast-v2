@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scen = (scene as? UIWindowScene) else { return }
+        CoreDataManager.shared.registerContainer()
         window = UIWindow(windowScene: scen)
         viewController = ViewController()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
@@ -48,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
         
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
     

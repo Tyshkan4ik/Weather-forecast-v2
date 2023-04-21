@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationManagerDelegate {
     
@@ -54,7 +55,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         definesPresentationContext = true // позволяет показать navigationBar поверх SearchList
         forecastCityModel = ForecastCityModel()
         cityModel = CityModel()
-        
+        getFavoritesCities()
     }
     
     private func setupElements() {
@@ -204,6 +205,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    /// Выгружаем города из CoreData в массив favoritesCityArray
+    private func getFavoritesCities() {
+        CoreDataManager.shared.getCities { [weak self] cities in
+            guard let self = self else { return }
+            self.favoritesCityArray = cities.map { CityModel(favoritesOnOff: $0.trueFalse, id: Int($0.id), lon: $0.lon, lat: $0.lat) }
+            let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / 17, weight: .medium, scale: .default)
+            if self.favoritesCityArray.filter({ $0?.id == self.cityModel?.id }).isEmpty {
+                let image = UIImage(systemName: "star", withConfiguration: config)
+                self.viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
+            } else {
+                let image = UIImage(systemName: "star.fill", withConfiguration: config)
+                self.viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
     //MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -235,8 +253,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             forecastCityModel?.favoritesOnOff = true
         }
     }
+    
+   
 
     //FINISH
+    
+    
     
 }
 
@@ -265,11 +287,13 @@ extension ViewController: ViewForNavigationBarDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    /// Добавляем / Удаляем город в/из избранное. Меняется стиль кнопки при клике. Удаляется или добавляется город в CoreData
+    /// - Returns: <#description#>
     func PressedButtonAddToFavoritest() -> String {
         if forecastCityModel?.favoritesOnOff == true {
             forecastCityModel?.favoritesOnOff = false
             favoritesCityArray.removeAll(where: { $0?.id == cityModel?.id })
-//            CoreDataCityManager.shared.delete(cityId: cityModel)
+            CoreDataManager.shared.delete(cityId: cityModel)
             print(favoritesCityArray)
             print(favoritesCityArray.count)
             return "star"
@@ -278,7 +302,7 @@ extension ViewController: ViewForNavigationBarDelegate {
             
                 favoritesCityArray.append(cityModel)
             
-//            CoreDataCityManager.shared.save(city: cityModel)
+            CoreDataManager.shared.save(city: cityModel)
             print(favoritesCityArray)
             print(favoritesCityArray.count)
             return "star.fill"
@@ -300,7 +324,8 @@ extension ViewController: ViewForNavigationBarDelegate {
 //MARK: - extension: FavoritesViewControllerDelegate
 
 extension ViewController: FavoritesViewControllerDelegate {
-    /// Удаляет город из избранного при скролле
+    
+    /// Удаляет город из избранного и CoreData при скролле
     /// - Parameter id: модель города, FavoritesCityModel
     func deleteCityFromFavorite(id: FavoritesCityModel?) {
         if id?.id == forecastCityModel?.firstSectionModel?.id {
@@ -310,15 +335,24 @@ extension ViewController: FavoritesViewControllerDelegate {
             //cityModel?.favoritesOnOff = false
             forecastCityModel?.favoritesOnOff = false
         }
+        let city = favoritesCityArray.filter { $0?.id == id?.id }
         favoritesCityArray.removeAll(where: {$0?.id == id?.id})
+        CoreDataManager.shared.delete(cityId: city[0])
     }
     
+    /// При клике на город в FavoritesViewController переходит на main экран и показывает погоду для выбранного города
+    /// - Parameter coordinate: модель данных
     func changeCoordinateCity(coordinate: FavoritesCityModel?) {
         if cityModel?.id != coordinate?.id {
             getForecast(lon: coordinate?.lon ?? "", lat: coordinate?.lat ?? "")
             lon = coordinate?.lon ?? ""
             lat = coordinate?.lat ?? ""
             navigationController?.popViewController(animated: true)
+        }
+        if cityModel?.favoritesOnOff == false {
+            let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / 17, weight: .medium, scale: .default)
+            let image = UIImage(systemName: "star", withConfiguration: config)
+            viewForNavigationBar.addToFavoritesButton.setImage(image, for: .normal)
         }
     }
 }
