@@ -106,6 +106,7 @@ class DayCellForCollection: UICollectionViewCell {
         self.layer.cornerRadius = Constants.itemCornerRadius
         setupElements()
         setupConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -138,9 +139,9 @@ class DayCellForCollection: UICollectionViewCell {
             degrees.topAnchor.constraint(equalTo: imageWeather.bottomAnchor, constant: Constants.degreesTopConstant),
             degrees.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            inf.topAnchor.constraint(equalTo: degrees.bottomAnchor),
+            inf.topAnchor.constraint(equalTo: degrees.bottomAnchor, constant: 5),
             inf.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            //inf.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.infBottomConstant),
+//            inf.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.infBottomConstant),
             inf.widthAnchor.constraint(equalToConstant: contentView.bounds.width)
         ])
         dayWeek.setContentHuggingPriority(.defaultHigh, for: .vertical)

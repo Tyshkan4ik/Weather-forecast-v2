@@ -15,7 +15,6 @@
 		8120586029EEE3F10076DFFF /* ForecastCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8120585F29EEE3F10076DFFF /* ForecastCityModel.swift */; };
 		812B028629DECC58008C1F48 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B028529DECC58008C1F48 /* LocationManager.swift */; };
 		812B028829DED04B008C1F48 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B028729DED04B008C1F48 /* NetworkService.swift */; };
-		8134547929CE49CD009E3164 /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134547829CE49CD009E3164 /* SearchList.swift */; };
 		8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */; };
 		8135893D29CA140B00F41B20 /* DayCellForCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893C29CA140B00F41B20 /* DayCellForCollection.swift */; };
 		8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */; };
@@ -24,6 +23,10 @@
 		8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */; };
 		8177D41B29F178BD009CE2B6 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D41A29F178BD009CE2B6 /* CityModel.swift */; };
 		8177D41D29F18859009CE2B6 /* FavoritesCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D41C29F18859009CE2B6 /* FavoritesCityModel.swift */; };
+		8177D41F29F1A0D8009CE2B6 /* ListOfCitiesResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D41E29F1A0D8009CE2B6 /* ListOfCitiesResponce.swift */; };
+		8177D42129F1A12B009CE2B6 /* ListOfCitiesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D42029F1A12B009CE2B6 /* ListOfCitiesRequest.swift */; };
+		8177D42329F1A1EE009CE2B6 /* ListOfCitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D42229F1A1EE009CE2B6 /* ListOfCitiesController.swift */; };
+		8177D42629F1A40E009CE2B6 /* ListOfCitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8177D42529F1A40E009CE2B6 /* ListOfCitiesModel.swift */; };
 		81BE5F9B29D355FB00683EBA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */; };
 		81BE5F9E29D37D4A00683EBA /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE5F9D29D37D4A00683EBA /* FavoritesCell.swift */; };
 		81CB260129C1E4BE004966A9 /* ForecastTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */; };
@@ -54,7 +57,6 @@
 		8120585F29EEE3F10076DFFF /* ForecastCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCityModel.swift; sourceTree = "<group>"; };
 		812B028529DECC58008C1F48 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		812B028729DED04B008C1F48 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		8134547829CE49CD009E3164 /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
 		8135893929C9D14800F41B20 /* Forecast5DaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast5DaysCell.swift; sourceTree = "<group>"; };
 		8135893C29CA140B00F41B20 /* DayCellForCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCellForCollection.swift; sourceTree = "<group>"; };
 		8135893E29CA184900F41B20 /* GradientViewForCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewForCollectionCell.swift; sourceTree = "<group>"; };
@@ -63,6 +65,10 @@
 		8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewForNavigationBar.swift; sourceTree = "<group>"; };
 		8177D41A29F178BD009CE2B6 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		8177D41C29F18859009CE2B6 /* FavoritesCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCityModel.swift; sourceTree = "<group>"; };
+		8177D41E29F1A0D8009CE2B6 /* ListOfCitiesResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCitiesResponce.swift; sourceTree = "<group>"; };
+		8177D42029F1A12B009CE2B6 /* ListOfCitiesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCitiesRequest.swift; sourceTree = "<group>"; };
+		8177D42229F1A1EE009CE2B6 /* ListOfCitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCitiesController.swift; sourceTree = "<group>"; };
+		8177D42529F1A40E009CE2B6 /* ListOfCitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfCitiesModel.swift; sourceTree = "<group>"; };
 		81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		81BE5F9D29D37D4A00683EBA /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		81CB260029C1E4BE004966A9 /* ForecastTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTodayCell.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 			children = (
 				8120585629EEB7740076DFFF /* ForecastTodayRequest.swift */,
 				81EDEC8529EF24B50097243F /* Forecast5daysRequest.swift */,
+				8177D42029F1A12B009CE2B6 /* ListOfCitiesRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -111,6 +118,7 @@
 			children = (
 				8120585429EEB6940076DFFF /* ForecastTodayResponce.swift */,
 				81EDEC8729EF256B0097243F /* Forecast5DaysResponce.swift */,
+				8177D41E29F1A0D8009CE2B6 /* ListOfCitiesResponce.swift */,
 			);
 			path = Responces;
 			sourceTree = "<group>";
@@ -166,6 +174,14 @@
 				8177D41C29F18859009CE2B6 /* FavoritesCityModel.swift */,
 			);
 			path = FavoritesScen;
+			sourceTree = "<group>";
+		};
+		8177D42429F1A399009CE2B6 /* ListOfCitiesScen */ = {
+			isa = PBXGroup;
+			children = (
+				8177D42529F1A40E009CE2B6 /* ListOfCitiesModel.swift */,
+			);
+			path = ListOfCitiesScen;
 			sourceTree = "<group>";
 		};
 		81BE5F9C29D37CAB00683EBA /* FavoritesScen */ = {
@@ -257,6 +273,7 @@
 				8177D41A29F178BD009CE2B6 /* CityModel.swift */,
 				8120585829EEB8500076DFFF /* MainScen */,
 				8177D41729F06B57009CE2B6 /* FavoritesScen */,
+				8177D42429F1A399009CE2B6 /* ListOfCitiesScen */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,7 +283,6 @@
 			children = (
 				81F9D81F29C0B08E00475D19 /* FactoryView.swift */,
 				8135898529CDF5AF00F41B20 /* ViewForNavigationBar.swift */,
-				8134547829CE49CD009E3164 /* SearchList.swift */,
 				81CB262C29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift */,
 				81CB25FF29C1E242004966A9 /* Cell */,
 			);
@@ -279,6 +295,7 @@
 				81F9D7FF29C07F1100475D19 /* ViewController.swift */,
 				8135896029CDA59B00F41B20 /* DetailedViewController.swift */,
 				81BE5F9A29D355FB00683EBA /* FavoritesViewController.swift */,
+				8177D42229F1A1EE009CE2B6 /* ListOfCitiesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +402,7 @@
 				8135896129CDA59B00F41B20 /* DetailedViewController.swift in Sources */,
 				81CB262B29C47E62004966A9 /* DetailedForecastTodayCell.swift in Sources */,
 				8120585E29EEE2060076DFFF /* ForecastTodayModel.swift in Sources */,
+				8177D42629F1A40E009CE2B6 /* ListOfCitiesModel.swift in Sources */,
 				8120585529EEB6940076DFFF /* ForecastTodayResponce.swift in Sources */,
 				8120585329EEB5410076DFFF /* RequestApiProtocol.swift in Sources */,
 				81EDEC8A29EF28030097243F /* Forecast5DaysModel.swift in Sources */,
@@ -396,6 +414,7 @@
 				812B028629DECC58008C1F48 /* LocationManager.swift in Sources */,
 				81F9D7FE29C07F1100475D19 /* SceneDelegate.swift in Sources */,
 				8120585C29EEE1840076DFFF /* DetailedForecastTodayModel.swift in Sources */,
+				8177D42129F1A12B009CE2B6 /* ListOfCitiesRequest.swift in Sources */,
 				8120586029EEE3F10076DFFF /* ForecastCityModel.swift in Sources */,
 				81EDEC8829EF256B0097243F /* Forecast5DaysResponce.swift in Sources */,
 				8135898629CDF5AF00F41B20 /* ViewForNavigationBar.swift in Sources */,
@@ -404,12 +423,13 @@
 				81BE5F9B29D355FB00683EBA /* FavoritesViewController.swift in Sources */,
 				81EDEC8629EF24B50097243F /* Forecast5daysRequest.swift in Sources */,
 				8135896429CDA91400F41B20 /* DetailedCell.swift in Sources */,
-				8134547929CE49CD009E3164 /* SearchList.swift in Sources */,
 				81BE5F9E29D37D4A00683EBA /* FavoritesCell.swift in Sources */,
 				8135893F29CA184900F41B20 /* GradientViewForCollectionCell.swift in Sources */,
 				8135893A29C9D14800F41B20 /* Forecast5DaysCell.swift in Sources */,
+				8177D42329F1A1EE009CE2B6 /* ListOfCitiesController.swift in Sources */,
 				8177D41D29F18859009CE2B6 /* FavoritesCityModel.swift in Sources */,
 				81F9D81B29C0A85300475D19 /* UIColor.swift in Sources */,
+				8177D41F29F1A0D8009CE2B6 /* ListOfCitiesResponce.swift in Sources */,
 				81CB262429C36F0A004966A9 /* GradientView.swift in Sources */,
 				81F9D82029C0B08E00475D19 /* FactoryView.swift in Sources */,
 				81CB262D29C497C7004966A9 /* ItemViewforStackFromDetailedCell.swift in Sources */,
@@ -551,6 +571,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NDWW33V3F9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather forecast v2.0/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -578,6 +599,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NDWW33V3F9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather forecast v2.0/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

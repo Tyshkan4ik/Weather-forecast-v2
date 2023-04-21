@@ -41,4 +41,9 @@ extension NetworkService {
         let request = source
         get(with: request.urlRequest!, completion: completion)
     }
+    
+    func getListOfCities(for source: RequestApiProtocol, completion: @escaping (Result<[ListOfCitiesResponce], Error>) -> Void) {
+        let request = source
+        get(with: request.urlRequest!, completion: completion)
+    }
 }

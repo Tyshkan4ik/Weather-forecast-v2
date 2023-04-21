@@ -52,6 +52,7 @@ class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         selectionStyle = .none
         collectionView.showsHorizontalScrollIndicator = false
      //   selectItem()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -100,8 +101,11 @@ class Forecast5DaysCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     
     //MARK: - UICollectionViewDelegateFlowLayout
     
-    // возвращает размеры Items коллекции
+//     возвращает размеры Items коллекции
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / Constants.widthDividerItems, height: collectionView.frame.height)
     }
+    
+    
+    
 }

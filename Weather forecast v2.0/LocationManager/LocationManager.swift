@@ -34,5 +34,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let lon = "\(location.coordinate.longitude)"
         let lat = "\(location.coordinate.latitude)"
         delegate?.didLocationUpdate(lon: lon , lat: lat)
+        //locationManager.stopUpdatingLocation()
     }
 }

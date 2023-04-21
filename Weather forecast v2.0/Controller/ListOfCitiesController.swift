@@ -1,22 +1,22 @@
 //
-//  Test.swift
+//  ListOfCitiesController.swift
 //  Weather forecast v2.0
 //
-//  Created by Виталий Троицкий on 25.03.2023.
+//  Created by Виталий Троицкий on 20.04.2023.
 //
 
 import Foundation
 import UIKit
 
-protocol SearchListOfCitiesControllerDelegate: AnyObject {
-//    func changeCoordinatesOnMain(coordinates: CoordinatesFromSearchListModel?)
+protocol ListOfCitiesControllerDelegate: AnyObject {
+    func changeCoordinatesOnMain(lat: String, lon: String)
 }
 
-class SearchListOfCitiesController: UIViewController {
+class ListOfCitiesController: UIViewController {
     
-    weak var delegate: SearchListOfCitiesControllerDelegate?
-//    var searchListOfCities: [SearchListOfCitiesModel]? = []
-//    private let service = FetchWeatherNetwork()
+    weak var delegate: ListOfCitiesControllerDelegate?
+    var searchListOfCities: [ListOfCitiesModel]? = []
+    private let networkService = NetworkService()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -51,51 +51,54 @@ class SearchListOfCitiesController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-//    private func fetchListCity(city: String) {
-//        service.fetchListOfCities(for: СitySearch(city: city)) { [weak self] result in
-//            switch result {
-//            case let .success(model):
-//                for i in model {
-//                    self?.searchListOfCities?.append(SearchListOfCitiesModel(name: i.name, lat: i.lat, lon: i.lon, country: i.country, state: i.state ?? ""))
-//                    DispatchQueue.main.async{
-//                        self?.tableView.reloadData()
-//                    }
-//                }
-//            case let .failure(error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//        searchListOfCities = []
-//    }
+    private func getListOfCities(city: String) {
+        networkService.getListOfCities(for: ListOfCitiesRequest(city: city)) { [weak self] result in
+            switch result {
+            case let .success(model):
+                for i in model {
+                    self?.searchListOfCities?.append(ListOfCitiesModel(name: i.name, lat: "\(i.lat)", lon: "\(i.lon)", country: i.country, state: i.state ?? ""))
+                    DispatchQueue.main.async{
+                        self?.tableView.reloadData()
+                    }
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+        searchListOfCities = []
+    }
 }
 
-extension SearchListOfCitiesController: UITableViewDataSource {
+extension ListOfCitiesController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return searchListOfCities?.count ?? 0
-        20
+        return searchListOfCities?.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        let city = searchListOfCities?[indexPath.row]
-//        cell.textLabel?.text = "\(city?.name ?? ""), \(city?.country ?? ""), \(city?.state ?? "")"
+        let city = searchListOfCities?[indexPath.row]
+        cell.textLabel?.text = "\(city?.name ?? ""), \(city?.country ?? ""), \(city?.state ?? "")"
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let coordinates = CoordinatesFromSearchListModel(lat: searchListOfCities?[indexPath.row].lat ?? 0, lon: searchListOfCities?[indexPath.row].lon ?? 0)
-//        self.delegate?.changeCoordinatesOnMain(coordinates: coordinates)
+        let index = indexPath.row
+        let lat = searchListOfCities?[index].lat ?? ""
+        let lon = searchListOfCities?[index].lon ?? ""
+        self.delegate?.changeCoordinatesOnMain(lat: lat, lon: lon)
     }
 }
 
-extension SearchListOfCitiesController: UITableViewDelegate {
+extension ListOfCitiesController: UITableViewDelegate {
 }
 
-extension SearchListOfCitiesController: UISearchResultsUpdating {
+extension ListOfCitiesController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text!
+        //print(searchText)
         var updateSearchText: String = ""
         for i in searchText {
             let ii = String(i)
@@ -105,6 +108,6 @@ extension SearchListOfCitiesController: UISearchResultsUpdating {
                 updateSearchText += ii
             }
         }
-//        fetchListCity(city: updateSearchText)
+        getListOfCities(city: updateSearchText)
     }
 }

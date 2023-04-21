@@ -54,6 +54,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         definesPresentationContext = true // позволяет показать navigationBar поверх SearchList
         forecastCityModel = ForecastCityModel()
         cityModel = CityModel()
+        
     }
     
     private func setupElements() {
@@ -95,6 +96,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     /// Получаем данные с сервера погоды и передаем их в модели
     private func getForecast(lon: String, lat: String) {
+        let group = DispatchGroup()
+        group.enter()
         networkService.getForecastToday(for: ForecastTodayRequest(lat: lat, lon: lon)) { [weak self] result in
             switch result {
             case let .success(model):
@@ -107,10 +110,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             case let .failure(error):
                 print(error.localizedDescription)
             }
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+            group.leave()
         }
+        
+        group.enter()
         networkService.getForecast5Days(for: Forecast5daysRequest(lat: lat, lon: lon)) { [weak self] result in
             switch result {
             case let .success(model):
@@ -127,10 +130,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             case let .failure(error):
                 print(error.localizedDescription)
             }
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-                self?.checkingFavorites()
-            }
+            group.leave()
+        }
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+            self.checkingFavorites()
         }
     }
     
@@ -162,6 +166,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         getForecast(lon: lon, lat: lat)
         self.lon = lon
         self.lat = lat
+        location.locationManager.stopUpdatingLocation()
     }
     
     //MARK: - UITableViewDataSource
@@ -208,7 +213,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //высота ячейки (чтобы не схлопывалась коллекция)
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 {
-            return Constants.screenHeight / Constants.heightDivider
+//            return Constants.screenHeight / Constants.heightDivider
+            return 275
         }
         return UITableView.automaticDimension
     }
@@ -251,6 +257,8 @@ extension ViewController: DetailedForecastTodayCellDelegate {
 
 extension ViewController: ViewForNavigationBarDelegate {
     
+    
+    
     func showFavoritesViewController() {
         let controller = FavoritesViewController(favoritesCity: favoritesCityArray)
         controller.delegate = self
@@ -275,6 +283,17 @@ extension ViewController: ViewForNavigationBarDelegate {
             print(favoritesCityArray.count)
             return "star.fill"
         }
+    }
+    
+    /// При выборе города через поиск на главную вью передаются координаты выбраного города и закрывается поиск
+    /// - Parameters:
+    ///   - lat: lat координата
+    ///   - lon: lon координата
+    func transferOfCoordinates(lat: String, lon: String) {
+        getForecast(lon: lon, lat: lat)
+                self.lon = lon
+                self.lat = lat
+           self.viewForNavigationBar.searchBar.isActive = false
     }
 }
 
@@ -302,6 +321,17 @@ extension ViewController: FavoritesViewControllerDelegate {
             navigationController?.popViewController(animated: true)
         }
     }
-    
-    
 }
+
+//MARK: - extension: ListOfCitiesControllerDelegate
+
+//extension ViewController: ListOfCitiesControllerDelegate {
+//    func changeCoordinatesOnMain(lat: String, lon: String) {
+//        print("lat, lon")
+//        getForecast(lon: lon, lat: lat)
+//        self.lon = String(lon)
+//        self.lat = String(lat)
+//    }
+//    
+//
+//}

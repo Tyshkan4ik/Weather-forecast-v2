@@ -13,10 +13,15 @@ protocol ViewForNavigationBarDelegate: AnyObject {
     func showFavoritesViewController()
     func PressedButtonAddToFavoritest() -> String
     //func update(_ cell: DetailedCell)
+    func transferOfCoordinates(lat: String, lon: String)
+}
+
+protocol TestDelegate: AnyObject {
+    func ogogo()
 }
 
 /// View для NavigationBar
-class ViewForNavigationBar: UIView {
+class ViewForNavigationBar: UIView, UISearchBarDelegate {
     
     private enum Constants {
         static let favoritesButtonName = "menu"
@@ -49,12 +54,12 @@ class ViewForNavigationBar: UIView {
     }()
     
     lazy var searchBar: UISearchController = {
-        let searchList = SearchListOfCitiesController()
+        let searchList = ListOfCitiesController()
         let search = UISearchController(searchResultsController: searchList)
-        //searchList.delegate = self
         search.searchResultsUpdater = searchList
         search.hidesNavigationBarDuringPresentation = false
         search.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchList.delegate = self
         return search
     }()
     
@@ -119,5 +124,14 @@ class ViewForNavigationBar: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / Constants.addToFavoritesWidthDivider, weight: .medium, scale: .default)
         let image = UIImage(systemName: value, withConfiguration: config)
         addToFavoritesButton.setImage(image, for: .normal)
+    }
+}
+
+//MARK: -
+
+extension ViewForNavigationBar: ListOfCitiesControllerDelegate {
+    func changeCoordinatesOnMain(lat: String, lon: String) {
+        delegate?.transferOfCoordinates(lat: lat, lon: lon)
+        
     }
 }
