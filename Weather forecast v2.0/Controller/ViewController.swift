@@ -60,6 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func setupElements() {
         view.addSubview(tableView)
+        tableView.addSubview(refreshControl)
     }
     
     /// Добавление viewForNavigationBar с кнопками на navigationBar
@@ -135,6 +136,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         group.notify(queue: .main) {
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
             self.checkingFavorites()
         }
     }
@@ -254,7 +256,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-   
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.attributedTitle = NSAttributedString(string: "Идет обновление...")
+        control.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return control
+    }()
+    
+    @objc func refresh() {
+            location.locationManager.startUpdatingLocation()
+    }
 
     //FINISH
     
