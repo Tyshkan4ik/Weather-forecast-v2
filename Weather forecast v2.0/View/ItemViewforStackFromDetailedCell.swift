@@ -34,7 +34,6 @@ class ItemViewforStackFromDetailedCell: UIView {
     
     private let valueTitl: UILabel = {
         let label = UILabel()
-        label.text = "5"
         label.numberOfLines = Constants.numberOfLines
         label.textColor = .black
         label.textAlignment = .center
@@ -84,8 +83,6 @@ class ItemViewforStackFromDetailedCell: UIView {
     }
    
     func setup(model: DetailedForecastTodayModel.ElementModel?) {
-//        image.image = model?.image
-//        titl.text = model?.title.firstUppercased
-        valueTitl.text = model?.value//.firstUppercased
+        valueTitl.text = model?.value
     }
 }

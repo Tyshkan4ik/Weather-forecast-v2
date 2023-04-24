@@ -44,7 +44,6 @@ class FavoritesCell: UITableViewCell {
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Москва"
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.cityLabelFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaLabel
@@ -55,7 +54,6 @@ class FavoritesCell: UITableViewCell {
     private let degrees: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "15°"
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaLabel
@@ -66,7 +64,6 @@ class FavoritesCell: UITableViewCell {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "солнечно"
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.infoLabelFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaLabel
@@ -81,7 +78,8 @@ class FavoritesCell: UITableViewCell {
         setupElements()
         setupConstraints()
         backgroundColor = .clear
-        selectionStyle = .none // отменить выделение ячейки
+        // отменить выделение ячейки
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

@@ -54,8 +54,6 @@ final class ForecastTodayCell: UITableViewCell {
     
     private let imageWeather: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "fewCloudsDay")
-        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -63,7 +61,6 @@ final class ForecastTodayCell: UITableViewCell {
     private let titlCity: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Санкт-Петербург"
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.titleCityFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
@@ -75,7 +72,6 @@ final class ForecastTodayCell: UITableViewCell {
     private let dayOfTheWeek: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "Понедельник"
         label.adjustsFontSizeToFitWidth = true
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.dayAndDateFontSize)
         label.alpha = Constants.alphaDayAndDate
@@ -85,7 +81,6 @@ final class ForecastTodayCell: UITableViewCell {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "16/03"
         label.textColor = .white
         label.alpha = Constants.alphaDayAndDate
         label.adjustsFontSizeToFitWidth = true
@@ -97,7 +92,6 @@ final class ForecastTodayCell: UITableViewCell {
     private let degreesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = "-3°"
         label.adjustsFontSizeToFitWidth = true
         label.alpha = Constants.alphaCityAndDegrees
         label.font = .AAvanteBsExtraBold(size: Constants.screenWidth / Constants.degreesFontSize)
@@ -213,30 +207,18 @@ final class ForecastTodayCell: UITableViewCell {
     func updateImageMain(icon: String) -> String {
         let value = icon
         switch value {
-        case "01d":
-            return "clearDay"
-        case "01n":
-            return "clearNight"
-        case "02d":
-            return "fewCloudsDay"
-        case "02n":
-            return "fewCloudsNight"
-        case "03d", "03n":
-            return "scatteredClouds"
-        case "04d", "04n":
-            return "clouds"
-        case "09d", "09n":
-            return "drizzle"
-        case "10d", "10n":
-            return "heavyRain"
-        case "11d", "11n":
-            return "thunderstorm"
-        case "13d", "13n":
-            return "snow"
-        case "50d", "50n":
-            return "mist"
-        default:
-            return "dde"
+        case "01d": return "clearDay"
+        case "01n": return "clearNight"
+        case "02d": return "fewCloudsDay"
+        case "02n": return "fewCloudsNight"
+        case "03d", "03n": return "scatteredClouds"
+        case "04d", "04n": return "clouds"
+        case "09d", "09n": return "drizzle"
+        case "10d", "10n": return "heavyRain"
+        case "11d", "11n": return "thunderstorm"
+        case "13d", "13n": return "snow"
+        case "50d", "50n": return "mist"
+        default: return "clearDay"
         }
     }
 }

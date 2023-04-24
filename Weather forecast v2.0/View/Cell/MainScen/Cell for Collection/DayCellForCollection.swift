@@ -141,7 +141,6 @@ class DayCellForCollection: UICollectionViewCell {
             
             inf.topAnchor.constraint(equalTo: degrees.bottomAnchor, constant: 5),
             inf.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            inf.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.infBottomConstant),
             inf.widthAnchor.constraint(equalToConstant: contentView.bounds.width)
         ])
         dayWeek.setContentHuggingPriority(.defaultHigh, for: .vertical)
@@ -157,7 +156,6 @@ class DayCellForCollection: UICollectionViewCell {
         dayWeek.text = transformTimeUnix(unix: model?.date ?? 0, timeZone: model?.timeZone ?? 0)
         date.text = transformTimeUnix2(unix: model?.date ?? 0, timeZone: model?.timeZone ?? 0)
         inf.text = model?.description
-//        print(model?.description ?? "")
     }
     
     /// Преобразуем время из unix, UTC с учетом часового пояса
@@ -189,32 +187,19 @@ class DayCellForCollection: UICollectionViewCell {
     }
     
     func updateImageMain(icon: String) -> String {
-        let value = icon
-        switch value {
-        case "01d":
-            return "clearDay"
-        case "01n":
-            return "clearNight"
-        case "02d":
-            return "fewCloudsDay"
-        case "02n":
-            return "fewCloudsNight"
-        case "03d", "03n":
-            return "scatteredClouds"
-        case "04d", "04n":
-            return "clouds"
-        case "09d", "09n":
-            return "drizzle"
-        case "10d", "10n":
-            return "heavyRain"
-        case "11d", "11n":
-            return "thunderstorm"
-        case "13d", "13n":
-            return "snow"
-        case "50d", "50n":
-            return "mist"
-        default:
-            return "fewCloudsDay"
+        switch icon {
+        case "01d": return "clearDay"
+        case "01n": return "clearNight"
+        case "02d": return "fewCloudsDay"
+        case "02n": return "fewCloudsNight"
+        case "03d", "03n": return "scatteredClouds"
+        case "04d", "04n": return "clouds"
+        case "09d", "09n": return "drizzle"
+        case "10d", "10n": return "heavyRain"
+        case "11d", "11n": return "thunderstorm"
+        case "13d", "13n": return "snow"
+        case "50d", "50n": return "mist"
+        default: return "fewCloudsDay"
         }
     }
 }

@@ -11,7 +11,6 @@ import UIKit
 /// Делегат ячейки DetailedForecastTodayCell с переходом на DetailedViewController
 protocol DetailedForecastTodayCellDelegate: AnyObject {
     func showDetailedViewController()
-    //func update(_ cell: DetailedCell)
 }
 
 /// Ячейка с подробным прогнозом на главной сцене

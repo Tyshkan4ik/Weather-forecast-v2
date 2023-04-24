@@ -24,7 +24,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-       // locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     //MARK: - CLLocationManagerDelegate
@@ -34,6 +33,5 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         let lon = "\(location.coordinate.longitude)"
         let lat = "\(location.coordinate.latitude)"
         delegate?.didLocationUpdate(lon: lon , lat: lat)
-        //locationManager.stopUpdatingLocation()
     }
 }

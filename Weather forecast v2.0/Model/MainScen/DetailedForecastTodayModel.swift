@@ -17,8 +17,6 @@ struct DetailedForecastTodayModel {
     let element6: ElementModel
     
     struct ElementModel {
-        //let title: String
         let value: String
-        //let image: UIImage?
     }
 }

@@ -96,7 +96,6 @@ class DetailedCell: UITableViewCell {
             separator.widthAnchor.constraint(equalToConstant: Constants.separetorWidthConstant),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: Constants.separetorBottomConstant),
             
-            //descriptionLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: separator.trailingAnchor, constant: Constants.descriptionLabelLeadingConstant),
             descriptionLabel.trailingAnchor.constraint(equalTo: valueLabel.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.valueLabelTopConstant),
@@ -110,10 +109,10 @@ class DetailedCell: UITableViewCell {
     }
     
     
-        func setup(model: String, symbol: String, description: String) {
-            valueLabel.text = model
-            self.symbol.image = UIImage(systemName: symbol)
-            descriptionLabel.text = description
-        }
+    func setup(model: String, symbol: String, description: String) {
+        valueLabel.text = model
+        self.symbol.image = UIImage(systemName: symbol)
+        descriptionLabel.text = description
+    }
 }
 

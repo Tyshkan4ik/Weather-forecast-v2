@@ -66,7 +66,7 @@ class DetailedViewController: UIViewController, UITableViewDataSource {
         networkService.getForecastToday(for: ForecastTodayRequest(lat: lat, lon: lon)) { [weak self] result in
             switch result {
             case let .success(model):
-                self?.detailedScenForecastTodayModel = [self?.roundUpToOne(value: model.main.temp) ?? "", self?.roundUpToOne(value: model.main.feelsLike) ?? "", "\(model.weather.first?.description ?? "")", self?.roundUpToOne(value: model.main.tempMin) ?? "", self?.roundUpToOne(value: model.main.tempMax) ?? "", self?.conversionHPaInMmHg(hPa: model.main.pressure) ?? "", "\(model.main.humidity)", self?.conversionHPaInMmHg(hPa: model.main.seaLevel ?? 0) ?? "", "\(model.wind.speed)", "\(model.wind.gust ?? 0)", "\(model.clouds.all)"]
+                self?.detailedScenForecastTodayModel = [self?.roundUpToOne(value: model.main.temp) ?? "", self?.roundUpToOne(value: model.main.feelsLike) ?? "", "\(model.weather.first?.description ?? "")", self?.roundUpToOne(value: model.main.tempMin) ?? "", self?.roundUpToOne(value: model.main.tempMax) ?? "", model.main.pressure.conversionHPaInMmHg(), "\(model.main.humidity)", model.main.seaLevel?.conversionHPaInMmHg() ?? "0", "\(model.wind.speed)", "\(model.wind.gust ?? 0)", "\(model.clouds.all)"]
                 self?.arraySymbol[2] = self?.transformIconInfoCell(icon: model.weather.first?.icon ?? "") ?? ""
                 
             case let .failure(error):
@@ -96,13 +96,6 @@ class DetailedViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    /// Перевод величины давления из hPa в mmHg
-    /// - Parameter hPa: Давление в hPa
-    /// - Returns: Давление в mmHg, String
-    private func conversionHPaInMmHg(hPa: Int) -> String {
-        "\(Int(Double(hPa) * Constants.conversionHPaInMmHg))"
-    }
-    
     /// Округляем число после запятой из сотых в десятичные
     /// - Parameter value: Число с сотым значением, Double
     /// - Returns: Число с десчятичным значением после запятой в String
@@ -123,10 +116,6 @@ class DetailedViewController: UIViewController, UITableViewDataSource {
         if let value = detailedScenForecastTodayModel {
             cell.setup(model: value[indexPath.row], symbol: arraySymbol[indexPath.row], description: arrayDescription[indexPath.row])
         }
-        
         return cell
     }
 }
-
-
-

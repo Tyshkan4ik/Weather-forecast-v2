@@ -12,7 +12,9 @@ protocol ListOfCitiesControllerDelegate: AnyObject {
     func changeCoordinatesOnMain(lat: String, lon: String)
 }
 
-class ListOfCitiesController: UIViewController {
+class ListOfCitiesController: UIViewController,UITableViewDelegate {
+    
+    //MARK: - Properties
     
     weak var delegate: ListOfCitiesControllerDelegate?
     var searchListOfCities: [ListOfCitiesModel]? = []
@@ -24,12 +26,13 @@ class ListOfCitiesController: UIViewController {
         return table
     }()
     
+    //MARK: - Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addNewElement()
         setupConstraint()
         setupTableView()
-        
     }
     
     private func addNewElement() {
@@ -55,6 +58,13 @@ class ListOfCitiesController: UIViewController {
         networkService.getListOfCities(for: ListOfCitiesRequest(city: city)) { [weak self] result in
             switch result {
             case let .success(model):
+                //api с косяком поэтому проверяем не пустой ли массив
+                if model.isEmpty {
+                    DispatchQueue.main.async{
+                        self?.tableView.reloadData()
+                    }
+                    return
+                }
                 for i in model {
                     self?.searchListOfCities?.append(ListOfCitiesModel(name: i.name, lat: "\(i.lat)", lon: "\(i.lon)", country: i.country, state: i.state ?? ""))
                     DispatchQueue.main.async{
@@ -62,18 +72,19 @@ class ListOfCitiesController: UIViewController {
                     }
                 }
             case let .failure(error):
-                print(error.localizedDescription)
+                print(String(describing: error))
             }
         }
         searchListOfCities = []
     }
 }
 
+//MARK: - extension - UITableViewDataSource
+
 extension ListOfCitiesController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchListOfCities?.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,22 +103,23 @@ extension ListOfCitiesController: UITableViewDataSource {
     }
 }
 
-extension ListOfCitiesController: UITableViewDelegate {
-}
+//MARK: - extension - UISearchResultsUpdating
 
 extension ListOfCitiesController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        //print(searchText)
-        var updateSearchText: String = ""
-        for i in searchText {
-            let ii = String(i)
-            if ii == " " {
-                updateSearchText += "-"
-            } else {
-                updateSearchText += ii
+        //проверяем что введен хотябы один символ
+        if searchController.searchBar.text?.count ?? 0 >= 1 {
+            let searchText = searchController.searchBar.text!
+            var updateSearchText: String = ""
+            for i in searchText {
+                let value = String(i)
+                if value == " " {
+                    updateSearchText += "-"
+                } else {
+                    updateSearchText += value
+                }
             }
+            getListOfCities(city: updateSearchText)
         }
-        getListOfCities(city: updateSearchText)
     }
 }

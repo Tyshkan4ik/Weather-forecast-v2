@@ -12,12 +12,7 @@ import UIKit
 protocol ViewForNavigationBarDelegate: AnyObject {
     func showFavoritesViewController()
     func PressedButtonAddToFavoritest() -> String
-    //func update(_ cell: DetailedCell)
     func transferOfCoordinates(lat: String, lon: String)
-}
-
-protocol TestDelegate: AnyObject {
-    func ogogo()
 }
 
 /// View для NavigationBar
@@ -59,11 +54,11 @@ class ViewForNavigationBar: UIView, UISearchBarDelegate {
         search.searchResultsUpdater = searchList
         search.hidesNavigationBarDuringPresentation = false
         search.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        //только английская клавиатура
+        search.searchBar.searchTextField.keyboardType = .asciiCapable
         searchList.delegate = self
         return search
     }()
-    
-    
     
     //MARK: - Init
     
@@ -120,7 +115,7 @@ class ViewForNavigationBar: UIView, UISearchBarDelegate {
     
     /// Меняем Символ звезды при нажатии
     /// - Parameter value: Имя systemName Image
-    private func changeStar(value: String) {
+    func changeStar(value: String) {
         let config = UIImage.SymbolConfiguration(pointSize: UIScreen.main.bounds.width / Constants.addToFavoritesWidthDivider, weight: .medium, scale: .default)
         let image = UIImage(systemName: value, withConfiguration: config)
         addToFavoritesButton.setImage(image, for: .normal)
@@ -132,6 +127,5 @@ class ViewForNavigationBar: UIView, UISearchBarDelegate {
 extension ViewForNavigationBar: ListOfCitiesControllerDelegate {
     func changeCoordinatesOnMain(lat: String, lon: String) {
         delegate?.transferOfCoordinates(lat: lat, lon: lon)
-        
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ApiManager.swift
+//  NetworkService.swift
 //  Weather forecast v2.0
 //
 //  Created by Виталий Троицкий on 06.04.2023.
