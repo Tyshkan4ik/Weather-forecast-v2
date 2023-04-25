@@ -2,7 +2,8 @@
 Ниже представлены скриншоты моего приложения на Swift (UIKit):
 
 <img width="245" alt="Снимок экрана 2023-04-25 в 16 47 01" src="https://user-images.githubusercontent.com/122968178/234297169-d4737951-0a2f-4bc2-9223-88a4046d7c0e.png">   <img width="245" alt="Снимок экрана 2023-04-25 в 16 59 52" src="https://user-images.githubusercontent.com/122968178/234301113-6322c14f-f882-4e4e-889f-c1a33c0348c5.png">
-<img width="245" alt="Снимок экрана 2023-04-25 в 16 59 44" src="https://user-images.githubusercontent.com/122968178/234301188-e11154fb-369d-489f-b5da-69690c52e66e.png">  <img width="245" alt="Снимок экрана 2023-04-25 в 16 59 32" src="https://user-images.githubusercontent.com/122968178/234301926-1e144718-b3e2-490a-986e-eb068fab5919.png">
+<img width="245" alt="Снимок экрана 2023-04-25 в 16 59 44" src="https://user-images.githubusercontent.com/122968178/234301188-e11154fb-369d-489f-b5da-69690c52e66e.png">  <img width="245" alt="Снимок экрана 2023-04-25 в 16 59 32" src="https://user-images.githubusercontent.com/122968178/234301926-1e144718-b3e2-490a-986e-eb068fab5919.png">   <img width="245" alt="Снимок экрана 2023-04-25 в 17 00 02" src="https://user-images.githubusercontent.com/122968178/234316906-6c58e0e0-95cc-4c52-86d2-ce6334fb16fc.png">   <img width="245" alt="Снимок экрана 2023-04-25 в 17 00 29" src="https://user-images.githubusercontent.com/122968178/234317202-b797f3cc-2f13-43f4-a6f5-219eb0538878.png">
+
 
 ## В разработке я применял:
 
