@@ -7,6 +7,8 @@
 
 ## В разработке я применял:
 
+⭐ Верстку кодом
+
 ⭐ UITableView
 
 ⭐ UICollectionView
